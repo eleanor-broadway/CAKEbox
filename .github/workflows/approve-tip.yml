@@ -73,6 +73,6 @@ jobs:
           title: "Add tip #${{ github.event.issue.number }}"
           body: "Auto-generated PR from approved issue #${{ github.event.issue.number }}"
           branch: tip-${{ github.event.issue.number }}
-          base: submit-a-resource
+          base: main
           delete-branch: true
 
