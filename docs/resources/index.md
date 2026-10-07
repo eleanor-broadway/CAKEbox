@@ -170,10 +170,10 @@ function submitResource() {
     `[Resource:${theme}] ${title}`;
 
   const issueBody =
-    `title: ${title}
-    url: ${url}
-    comment: ${comment}
-    tag: ${theme}`;
+`title: ${title}
+url: ${url}
+comment: ${comment}
+tag: ${theme}`;
 
   const githubUrl =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
