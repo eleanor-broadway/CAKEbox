@@ -76,23 +76,140 @@ We ask contributors to:
 * Focus on what is best for the community
 * Show courtesy and respect towards others
 
-<div class="sticky-board">
 
-{% for tip in tips("template") %}
+---
 
-<div class="sticky-note {{ tip.color }}">
-  <div class="note-title">
-    {{ tip.emoji }} {{ tip.title }}
-  </div>
 
-  <div class="note-text">
-    {{ tip.text }}
+## Add your sticky note
+
+<div class="submit-box">
+
+  <p class="submit-description">
+    Share a tip, lesson learned, or useful advice with the community.
+  </p>
+
+  <p class="submit-helper">
+  </br>
+  After clicking <strong>Submit</strong>, a GitHub issue will open
+  with your tip pre-filled. Simply click <strong>"Create"</strong>
+  to send it to the CAKE team for review before it goes live.
+</p>
+
+  <input
+    class="tip-input"
+    id="tip-title"
+    placeholder="Title"
+  />
+
+  <textarea
+    class="tip-textarea"
+    id="tip-text"
+    placeholder="Your text..."
+  ></textarea>
+
+  <div class="tip-controls">
+
+<label for="tip-theme">What theme does this tip fit under?</label>
+
+<select id="tip-theme" onchange="toggleCustomTheme()">
+
+  <option value="">Select a theme...</option>
+
+  {% for theme in tip_themes() %}
+    <option value="{{ theme }}">
+      {{ theme | replace("-", " ") | title }}
+    </option>
+  {% endfor %}
+
+  <option value="other">Other — suggest a new theme</option>
+
+</select>
+
+<input
+  id="custom-theme"
+  class="tip-input"
+  placeholder="Enter a new theme"
+  style="display: none;"
+/>
+
+
+<div class="emoji-picker">
+  <p class="emoji-label">
+    Select an emoji:
+  </p>
+
+  <div class="emoji-grid" id="tip-emoji">
+
+    <button type="button" class="emoji-btn active">🤝</button>
+    <button type="button" class="emoji-btn">💡</button>
+    <button type="button" class="emoji-btn">📝</button>
+    <button type="button" class="emoji-btn">🚀</button>
+    <button type="button" class="emoji-btn">🎯</button>
+    <button type="button" class="emoji-btn">🌟</button>
+    <button type="button" class="emoji-btn">📚</button>
+    <button type="button" class="emoji-btn">🧠</button>
+    <button type="button" class="emoji-btn">✨</button>
+    <button type="button" class="emoji-btn">🎨</button>
+    <button type="button" class="emoji-btn">💬</button>
+    <button type="button" class="emoji-btn">🔍</button>
+    <button type="button" class="emoji-btn">📌</button>
+    <button type="button" class="emoji-btn">🛠️</button>
+    <button type="button" class="emoji-btn">🔥</button>
+    <button type="button" class="emoji-btn">📖</button>
+    <button type="button" class="emoji-btn">📱</button>
+    <button type="button" class="emoji-btn">🙌</button>
   </div>
 </div>
 
-{% endfor %}
+<div class="colour-picker">
+
+  <p class="emoji-label">
+    Select your colour:
+  </p>
+
+  <div class="colour-grid" id="tip-colour">
+
+    <button
+      type="button"
+      class="colour-btn yellow active"
+      data-colour="yellow">
+    </button>
+
+    <button
+      type="button"
+      class="colour-btn blue"
+      data-colour="blue">
+    </button>
+
+    <button
+      type="button"
+      class="colour-btn green"
+      data-colour="green">
+    </button>
+
+    <button
+      type="button"
+      class="colour-btn pink"
+      data-colour="pink">
+    </button>
+
+  </div>
 
 </div>
+
+</div>
+
+<button
+class="tip-submit-btn"
+onclick="submitTip()">
+Submit
+</button>
+</div>
+
+
+
+</div>
+
 
 
 <script>
@@ -130,7 +247,19 @@ document.querySelectorAll(".colour-btn").forEach(btn => {
 </script>
 
 <script>
-function submitTip(theme) {
+function toggleCustomTheme() {
+  const themeSelect = document.getElementById("tip-theme");
+  const customTheme = document.getElementById("custom-theme");
+
+  if (themeSelect.value === "other") {
+    customTheme.style.display = "block";
+  } else {
+    customTheme.style.display = "none";
+    customTheme.value = "";
+  }
+}
+
+function submitTip() {
 
   const title =
     document.getElementById("tip-title").value.trim();
@@ -141,13 +270,31 @@ function submitTip(theme) {
   const emoji =
     document.querySelector(".emoji-btn.active").textContent;
 
+  const selectedTheme = document
+    .getElementById("tip-theme")
+    .value;
+
   const color =
     document
     .querySelector(".colour-btn.active")
     .dataset.colour;
 
-  if (!title || !text) {
-    alert("Please fill in both title and text.");
+  let theme;
+
+  if (selectedTheme === "other") {
+    theme = document
+      .getElementById("custom-theme")
+      .value
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+  } else {
+    theme = selectedTheme;
+  }
+
+
+  if (!title || !text || !theme) {
+    alert("Please fill in all fields.");
     return;
   }
 
@@ -155,7 +302,8 @@ function submitTip(theme) {
     `[Tip:${theme}] ${title}`;
 
   const issueBody =
-`theme: ${theme}
+`type: tip
+theme: ${theme}
 title: ${title}
 emoji: ${emoji}
 color: ${color}

@@ -40,19 +40,21 @@ jobs:
                       return line.split(":", 1)[1].strip()
               return ""
 
+          type = get("type")
           theme = get("theme")
           title = get("title")
           text = get("text")
           emoji = get("emoji")
           color = get("color")
 
-          folder = Path(f"data/tips/{theme}")
+          folder = Path(f"data/{theme}")
           folder.mkdir(parents=True, exist_ok=True)
 
           slug = title.lower().replace(" ", "-")
           file_path = folder / f"{slug}.yml"
 
           data = {
+              "type": type 
               "title": title,
               "text": text,
               "emoji": emoji,

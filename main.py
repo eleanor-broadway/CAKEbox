@@ -5,7 +5,7 @@ def define_env(env):
 
     def load_tips(theme):
 
-        folder = Path(f"data/tips/{theme}")
+        folder = Path(f"data/{theme}")
 
         if not folder.exists():
             return []
@@ -21,9 +21,12 @@ def define_env(env):
 
         return all_tips
 
-    def load_resources():
+    def load_resources(theme=None):
 
-        folder = Path(f"data/resources")
+        if theme: 
+            folder = Path(f"data/{theme}")
+        else:     
+            folder = Path(f"data")
 
         if not folder.exists():
             return []
@@ -43,7 +46,20 @@ def define_env(env):
 
     def get_resource_themes():
 
-        folder = Path("data/resources")
+        folder = Path("datas")
+
+        if not folder.exists():
+            return []
+
+        return sorted(
+            directory.name
+            for directory in folder.iterdir()
+            if directory.is_dir()
+        )
+
+    def get_tip_themes():
+
+        folder = Path("data")
 
         if not folder.exists():
             return []
@@ -57,4 +73,5 @@ def define_env(env):
 
     env.variables["resources"] = load_resources
     env.variables["resource_themes"] = get_resource_themes
+    env.variables["tip_themes"] = get_tip_themes
     env.variables["tips"] = load_tips
