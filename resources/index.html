@@ -51,6 +51,8 @@
     
       <link rel="stylesheet" href="../stylesheets/sprinkles.css">
     
+      <link rel="stylesheet" href="../stylesheets/resources.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -428,14 +430,14 @@
       
       
       
-        <a href="../all/#tag:central-themes" class="md-tag">Central themes</a>
+        <a href="../how-to-contribute/contribution-template/#tag:central-themes" class="md-tag">Central themes</a>
       
     
       
       
       
       
-        <a href="../all/#tag:resources" class="md-tag">Resources</a>
+        <a href="../how-to-contribute/contribution-template/#tag:resources" class="md-tag">Resources</a>
       
     
   </nav>
@@ -452,54 +454,46 @@
 
   <h1>Add your own resources</h1>
 
-<!-- Visualising as sticky notes -->
+<div class="resources-board">
 
-<!-- Turn this into lines rather than notes -->
+        <div class="resource-box">
+            <div class="resource-title">
+                test4
+            </div>
+            <div class="resource-url">
+                <a href="https://www.cake.ac.uk">https://www.cake.ac.uk</a>
+            </div>
+            <div class="resource-text">
+                why not
+            </div>
+        </div>
 
-<div class="sticky-board">
-
-
-    <div class="sticky-note">
-      <div class="note-title">
-        test4
-      </div>
-
-      <div class="note-url">
-        <a href="https://www.cake.ac.uk">https://www.cake.ac.uk</a>
-      </div>
-
-      <div class="note-text">
-        why not
-      </div>
-    </div>
-
-
-    <div class="sticky-note">
-      <div class="note-title">
-        test5
-      </div>
-
-      <div class="note-url">
-        <a href="https://www.cake.ac.uk">https://www.cake.ac.uk</a>
-      </div>
-
-      <div class="note-text">
-        again again
-      </div>
-    </div>
-
-
+        <div class="resource-box">
+            <div class="resource-title">
+                test5
+            </div>
+            <div class="resource-url">
+                <a href="https://www.cake.ac.uk">https://www.cake.ac.uk</a>
+            </div>
+            <div class="resource-text">
+                again again
+            </div>
+        </div>
 
 </div>
 
 <!-- Box for users to submit a new resource -->
-<div class="submit-box">
+<div class="resources-submit-box">
 
-  <p class="submit-description">
-    Share a resource.
+  <p class="resources-submit-description">
+    Have a resource to share?
   </p>
 
-  <p class="submit-helper">
+  <p class="resources-submit-helper">
+    We'd love to hear about websites, tools, guides, or other resources you've found useful. Tell us a little about what makes it worth sharing.
+  </p>
+
+  <p class="resources-submit-helper">
     </br>
     After clicking <strong>Submit</strong>, a GitHub issue will open
     with your resource pre-filled. Simply click <strong>"Create"</strong>
@@ -509,24 +503,23 @@
   <input
     class="tip-input"
     id="resource-title"
-    placeholder="Title"
+    placeholder="Resource title"
   />
 
   <input
     class="tip-input"
     id="resource-url"
-    placeholder="Paste the link to the resource here"
+    placeholder="Paste the resource link"
   />
 
   <textarea
     class="tip-textarea"
     id="resource-comment"
-    placeholder="Tell us a bit about why you want to share this resource?"
+    placeholder="What makes this resource useful? Tell us a little about it..."
   ></textarea>
 
-<!-- <label for="resource-theme">Theme</label> -->
+<label for="resource-theme">What theme does this resource fit under?</label>
 
-<!-- TO DO: Make this look nicer -->
 <select id="resource-theme" onchange="toggleCustomTheme()">
 
   <option value="">Select a theme...</option>
@@ -541,7 +534,7 @@
     </option>
 
 
-  <option value="other">Other — create a new theme</option>
+  <option value="other">Other — suggest a new theme</option>
 
 </select>
 
@@ -552,14 +545,13 @@
   style="display: none;"
 />
 
-  <button
-    class="tip-submit-btn"
-    onclick="submitResource()">
-    Submit
-  </button>
-  </div>
-
+<button
+class="tip-submit-btn"
+onclick="submitResource()">
+Submit
+</button>
 </div>
+
 <!-- Script that takes the user input and creates the issue -->
 <script>
 function toggleCustomTheme() {
@@ -594,7 +586,7 @@ function submitResource() {
     .getElementById("resource-theme")
     .value;
 
-  // Add https:// if the user didn't provide a protocol
+  // Add https:// 
   if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
     url = "https://" + url;
   }
@@ -614,6 +606,11 @@ function submitResource() {
 
   if (!title || !url || !comment || !theme) {
     alert("Please fill in all fields.");
+    return;
+  }
+
+  if (!url.includes("www.")) {
+    alert("Please enter a URL that includes www.");
     return;
   }
 
