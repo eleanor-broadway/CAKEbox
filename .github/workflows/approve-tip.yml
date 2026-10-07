@@ -54,7 +54,7 @@ jobs:
           file_path = folder / f"{slug}.yml"
 
           data = {
-              "type": type 
+              "type": type, 
               "title": title,
               "text": text,
               "emoji": emoji,
