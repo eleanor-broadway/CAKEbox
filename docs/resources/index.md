@@ -20,7 +20,7 @@ tags: [Central themes, Resources]
       </div>
 
       <div class="note-text">
-        {{ resource.tag }}
+        {{ resource.theme }}
       </div>
 
       <div class="note-text">
@@ -173,7 +173,7 @@ function submitResource() {
 `title: ${title}
 url: ${url}
 comment: ${comment}
-tag: ${theme}`;
+theme: ${theme}`;
 
   const githubUrl =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
