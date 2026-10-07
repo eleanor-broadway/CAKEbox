@@ -103,25 +103,6 @@
   opacity: 0.9;
 }
 
-.note-url {
-  margin-bottom: 0.5rem;
-  font-size: 0.55rem;
-  line-height: 1.3;
-  opacity: 0.65;
-  overflow-wrap: anywhere;
-}
-
-.note-url a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.note-url a:hover {
-  text-decoration: underline;
-  opacity: 1;
-}
-
 .sticky-note.yellow {
   background: #F1F8CA;
   color: #2b2b2b;

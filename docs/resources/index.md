@@ -3,40 +3,35 @@ title: Add your own resources
 tags: [Central themes, Resources]
 ---
 
-<!-- Visualising as sticky notes -->
-
-<!-- Turn this into lines rather than notes -->
-
-<div class="sticky-board">
-
+<div class="resources-board">
   {% for resource in resources() %}
-    <div class="sticky-note">
-      <div class="note-title">
-        {{ resource.title }}
-      </div>
-
-      <div class="note-url">
-        <a href="{{ resource.url }}">{{ resource.url }}</a>
-      </div>
-
-      <div class="note-text">
-        {{ resource.comment }}
-      </div>
-    </div>
-
-{% endfor %}
-
+        <div class="resource-box">
+            <div class="resource-title">
+                {{ resource.title }}
+            </div>
+            <div class="resource-url">
+                <a href="{{ resource.url }}">{{ resource.url }}</a>
+            </div>
+            <div class="resource-text">
+                {{ resource.comment }}
+            </div>
+        </div>
+    {% endfor %}
 </div>
 
 
 <!-- Box for users to submit a new resource -->
-<div class="submit-box">
+<div class="resources-submit-box">
 
-  <p class="submit-description">
-    Share a resource.
+  <p class="resources-submit-description">
+    Have a resource to share?
   </p>
 
-  <p class="submit-helper">
+  <p class="resources-submit-helper">
+    We'd love to hear about websites, tools, guides, or other resources you've found useful. Tell us a little about what makes it worth sharing.
+  </p>
+
+  <p class="resources-submit-helper">
     </br>
     After clicking <strong>Submit</strong>, a GitHub issue will open
     with your resource pre-filled. Simply click <strong>"Create"</strong>
@@ -46,24 +41,23 @@ tags: [Central themes, Resources]
   <input
     class="tip-input"
     id="resource-title"
-    placeholder="Title"
+    placeholder="Resource title"
   />
 
   <input
     class="tip-input"
     id="resource-url"
-    placeholder="Paste the link to the resource here"
+    placeholder="Paste the resource link"
   />
 
   <textarea
     class="tip-textarea"
     id="resource-comment"
-    placeholder="Tell us a bit about why you want to share this resource?"
+    placeholder="What makes this resource useful? Tell us a little about it..."
   ></textarea>
 
-<!-- <label for="resource-theme">Theme</label> -->
+<label for="resource-theme">What theme does this resource fit under?</label>
 
-<!-- TO DO: Make this look nicer -->
 <select id="resource-theme" onchange="toggleCustomTheme()">
 
   <option value="">Select a theme...</option>
@@ -74,7 +68,7 @@ tags: [Central themes, Resources]
     </option>
   {% endfor %}
 
-  <option value="other">Other — create a new theme</option>
+  <option value="other">Other — suggest a new theme</option>
 
 </select>
 
@@ -85,18 +79,12 @@ tags: [Central themes, Resources]
   style="display: none;"
 />
 
-  <button
-    class="tip-submit-btn"
-    onclick="submitResource()">
-    Submit
-  </button>
-  </div>
-
+<button
+class="tip-submit-btn"
+onclick="submitResource()">
+Submit
+</button>
 </div>
-
-
-
-
 
 
 
@@ -134,7 +122,7 @@ function submitResource() {
     .getElementById("resource-theme")
     .value;
 
-  // Add https:// if the user didn't provide a protocol
+  // Add https:// 
   if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
     url = "https://" + url;
   }
@@ -157,6 +145,11 @@ function submitResource() {
     return;
   }
 
+  if (!url.includes("www.")) {
+    alert("Please enter a URL that includes www.");
+    return;
+  }
+  
   const issueTitle = `[Resource:${theme}] ${title}`;
 
   const issueBody =
