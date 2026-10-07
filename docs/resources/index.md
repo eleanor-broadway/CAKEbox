@@ -18,6 +18,7 @@ tags: [Central themes, Resources]
       <div class="note-url">
         <a href="{{ resource.url }}">{{ resource.url }}</a>
       </div>
+
       <div class="note-text">
         {{ resource.comment }}
       </div>
@@ -102,76 +103,61 @@ tags: [Central themes, Resources]
 <!-- Script that takes the user input and creates the issue -->
 <script>
 function toggleCustomTheme() {
-
-
-//  Pretty sure this is working because if I manually create themes, these show up in the drop down as expected. 
-  const themeSelect =
-    document.getElementById("resource-theme");
-
-  const customTheme =
-    document.getElementById("custom-theme");
+  const themeSelect = document.getElementById("resource-theme");
+  const customTheme = document.getElementById("custom-theme");
 
   if (themeSelect.value === "other") {
     customTheme.style.display = "block";
-
   } else {
     customTheme.style.display = "none";
     customTheme.value = "";
-
   }
 }
 
-
 function submitResource() {
+  const title = document
+    .getElementById("resource-title")
+    .value
+    .trim();
 
-  const title =
-    document.getElementById("resource-title").value.trim();
-
-    let url = document
+  let url = document
     .getElementById("resource-url")
     .value
     .trim();
 
-    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+  const comment = document
+    .getElementById("resource-comment")
+    .value
+    .trim();
+
+  const selectedTheme = document
+    .getElementById("resource-theme")
+    .value;
+
+  // Add https:// if the user didn't provide a protocol
+  if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
     url = "https://" + url;
-    }
-
-  const url =
-    document.getElementById("resource-url").value.trim();
-
-  const comment =
-    document.getElementById("resource-comment").value.trim();
-
-  const selectedTheme =
-    document.getElementById("resource-theme").value;
+  }
 
   let theme;
 
   if (selectedTheme === "other") {
-
-    theme =
-      document
-        .getElementById("custom-theme")
-        .value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "-");
-
+    theme = document
+      .getElementById("custom-theme")
+      .value
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-");
   } else {
     theme = selectedTheme;
   }
-
-
-
-
 
   if (!title || !url || !comment || !theme) {
     alert("Please fill in all fields.");
     return;
   }
 
-  const issueTitle =
-    `[Resource:${theme}] ${title}`;
+  const issueTitle = `[Resource:${theme}] ${title}`;
 
   const issueBody =
 `title: ${title}
@@ -187,5 +173,4 @@ theme: ${theme}`;
 
   window.open(githubUrl, "_blank");
 }
-
 </script>
