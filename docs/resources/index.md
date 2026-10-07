@@ -7,20 +7,17 @@ tags: [Central themes, Resources]
 
 <!-- Turn this into lines rather than notes -->
 
-<div class="sticky-board">
+<div class="resource-layout">
 
   {% for resource in resources() %}
-    <div class="sticky-note">
+    <div class="resource-box">
       <div class="note-title">
         {{ resource.title }}
       </div>
 
-      <div class="note-text">
-        {{ resource.url }}
-      </div>
-
-      <div class="note-text">
-        {{ resource.theme }}
+      <div class="note-url">
+        <a href="{{ resource.url }}" target="_blank" rel="noopener noreferrer">
+        {{ resource.url }}     
       </div>
 
       <div class="note-text">
@@ -131,6 +128,15 @@ function submitResource() {
 
   const title =
     document.getElementById("resource-title").value.trim();
+
+    let url = document
+    .getElementById("resource-url")
+    .value
+    .trim();
+
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = "https://" + url;
+    }
 
   const url =
     document.getElementById("resource-url").value.trim();
