@@ -19,7 +19,7 @@
     
     
       
-        <title>Submissions & Reviewing - CAKEbox</title>
+        <title>Add your own resources - CAKEbox</title>
       
     
     
@@ -75,11 +75,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#cake-review-committee" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -109,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Submissions & Reviewing
+              Add your own resources
             
           </span>
         </div>
@@ -414,64 +409,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#cake-review-committee" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CAKE Review Committee
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-included" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is included?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resources
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Resources">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tag:submissions--reviewing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Submissions & Reviewing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -498,14 +435,14 @@
       
       
       
-        <a href="../all/#tag:submissions--reviewing" class="md-tag">Submissions & Reviewing</a>
+        <a href="../all/#tag:resources" class="md-tag">Resources</a>
       
     
   </nav>
 
 
   
-    <a href="https://github.com/eleanor-broadway/CAKEbox/edit/main/docs/submissions-and-reviewing/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/eleanor-broadway/CAKEbox/edit/main/docs/resources/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -513,57 +450,159 @@
   
 
 
-  <h1>Submissions & Reviewing</h1>
+  <h1>Add your own resources</h1>
 
-<p>Preparing funding applications and conference submissions is a vital part of the computational science community’s workflow around knowledge exchange. These processes provide opportunities to showcase our work, learn from others, strengthen collaborations, and secure funding to continue doing the work we love.</p>
-<p>Reviewing is essential to support these processes. By acting as a reviewer, you contribute to maintaining quality, fairness and integrity within the community. Reviewing also provides valuable insight into what makes a strong submission and can strengthen your own applications.</p>
-<hr />
-<h2 id="cake-review-committee">CAKE Review Committee</h2>
-<p>The CAKE Review Committee is responsible for providing fair, respectful and constructive reviews to ensure CAKE funds are allocated appropriately and transparently.</p>
-<p>Interested in getting involved? </p>
-<ul>
-<li>Read our <a href="reviewer-terms-of-reference/">Terms of Reference here</a>. </li>
-<li><strong><a href="https://www.cake.ac.uk/about/reviewers/">Apply here.</a></strong></li>
-</ul>
-<hr />
-<h2 id="what-is-included">What is included?</h2>
-<p>Resources that provide guidance on: </p>
-<ul>
-<li>Identifying and preparing funding applications  </li>
-<li>Writing strong funding proposals  </li>
-<li>Preparing conference abstracts and submissions  </li>
-<li>Examples of successful submissions  </li>
-<li>Best practice in peer review  </li>
-<li>Guidance and documentation for the CAKE Review Committee  </li>
-</ul>
-<hr />
-<h2 id="resources">Resources</h2>
+<!-- Visualising as sticky notes -->
+
+<!-- Turn this into lines rather than notes -->
+
+<div class="sticky-board">
 
 
-  <h3 id="tag:submissions--reviewing">
+
+</div>
+
+<!-- Box for users to submit a new resource -->
+<div class="submit-box">
+
+  <p class="submit-description">
+    Share a resource.
+  </p>
+
+  <p class="submit-helper">
+    </br>
+    After clicking <strong>Submit</strong>, a GitHub issue will open
+    with your resource pre-filled. Simply click <strong>"Create"</strong>
+    to send it to the CAKE team for review before it goes live.
+  </p>
+
+  <input
+    class="tip-input"
+    id="resource-title"
+    placeholder="Title"
+  />
+
+  <input
+    class="tip-input"
+    id="resource-url"
+    placeholder="Paste the link to the resource here"
+  />
+
+  <textarea
+    class="tip-textarea"
+    id="resource-comment"
+    placeholder="Tell us a bit about why you want to share this resource?"
+  ></textarea>
+
+<!-- <label for="resource-theme">Theme</label> -->
+
+<!-- TO DO: Make this look nicer -->
+<select id="resource-theme" onchange="toggleCustomTheme()">
+
+  <option value="">Select a theme...</option>
 
 
-<span class="md-tag">Submissions & Reviewing</span></h3>
-  <ul>
-    
-      <li>
-        <a href="how-to-review/">
-          Best Practice Guidance for Reviewing
-        </a>
-      </li>
-    
-      <li>
-        <a href="reviewer-terms-of-reference/">
-          CAKE Review Committee Terms of Reference
-        </a>
-      </li>
-    
-    
-  </ul>
 
-<ul>
-<li><a href="https://www.ukri.org/blog/12-top-tips-for-writing-a-grant-application/">UKRI's 12 top tips for writing a grant application</a> </li>
-</ul>
+  <option value="other">Other — create a new theme</option>
+
+</select>
+
+<input
+  id="custom-theme"
+  class="tip-input"
+  placeholder="Enter a new theme"
+  style="display: none;"
+/>
+
+  <button
+    class="tip-submit-btn"
+    onclick="submitResource()">
+    Submit
+  </button>
+  </div>
+
+</div>
+<!-- Script that takes the user input and creates the issue -->
+<script>
+function toggleCustomTheme() {
+
+  const themeSelect =
+    document.getElementById("resource-theme");
+
+  const customTheme =
+    document.getElementById("custom-theme");
+
+  if (themeSelect.value === "other") {
+
+    customTheme.style.display = "block";
+
+  } else {
+
+    customTheme.style.display = "none";
+    customTheme.value = "";
+
+  }
+}
+
+
+function submitResource() {
+
+  const title =
+    document.getElementById("resource-title").value.trim();
+
+  const url =
+    document.getElementById("resource-url").value.trim();
+
+  const comment =
+    document.getElementById("resource-comment").value.trim();
+
+  const selectedTheme =
+    document.getElementById("resource-theme").value;
+
+  let theme;
+
+  if (selectedTheme === "other") {
+
+    theme =
+      document
+        .getElementById("custom-theme")
+        .value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+  } else {
+
+    theme = selectedTheme;
+
+  }
+
+  if (!title || !url || !comment || !theme) {
+
+    alert("Please fill in all fields.");
+    return;
+
+  }
+
+  const issueTitle =
+    `[Resource:${theme}] ${title}`;
+
+  const issueBody =
+    `title: ${title}
+    url: ${url}
+    comment: ${comment}
+    tag: ${theme}`;
+
+  const githubUrl =
+    "https://github.com/eleanor-broadway/CAKEbox/issues/new"
+    + "?labels=resource-submission"
+    + "&title=" + encodeURIComponent(issueTitle)
+    + "&body=" + encodeURIComponent(issueBody);
+
+  window.open(githubUrl, "_blank");
+}
+
+</script>
 
 
 
