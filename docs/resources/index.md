@@ -108,6 +108,8 @@ tags: [Central themes, Resources]
 <script>
 function toggleCustomTheme() {
 
+
+//  Pretty sure this is working because if I manually create themes, these show up in the drop down as expected. 
   const themeSelect =
     document.getElementById("resource-theme");
 
@@ -115,11 +117,9 @@ function toggleCustomTheme() {
     document.getElementById("custom-theme");
 
   if (themeSelect.value === "other") {
-
     customTheme.style.display = "block";
 
   } else {
-
     customTheme.style.display = "none";
     customTheme.value = "";
 
@@ -154,16 +154,16 @@ function submitResource() {
         .replace(/\s+/g, "-");
 
   } else {
-
     theme = selectedTheme;
-
   }
 
-  if (!title || !url || !comment || !theme) {
 
+
+
+
+  if (!title || !url || !comment || !theme) {
     alert("Please fill in all fields.");
     return;
-
   }
 
   const issueTitle =

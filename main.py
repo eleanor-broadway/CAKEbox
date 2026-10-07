@@ -30,7 +30,7 @@ def define_env(env):
 
         all_resources = []
 
-        for file in sorted(folder.glob("*.yml")):
+        for file in sorted(folder.rglob("*.yml")):
             data = yaml.safe_load(
                 file.read_text(encoding="utf-8")
             )

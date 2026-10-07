@@ -55,7 +55,7 @@ jobs:
               "title": title,
               "url": url,
               "comment": comment,
-              "tag": theme
+              "theme": theme
           }
 
           file_path.write_text(
