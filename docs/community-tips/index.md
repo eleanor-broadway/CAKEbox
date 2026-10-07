@@ -162,7 +162,7 @@ color: ${color}
 text: ${text}`;
 
   const url =
-    "https://github.com/CAKE-DRI/CAKEbox/issues/new"
+    "https://github.com/eleanor-broadway/CAKEbox/issues/new"
     + "?labels=tip-submission," + theme
     + "&title=" + encodeURIComponent(issueTitle)
     + "&body=" + encodeURIComponent(issueBody);
