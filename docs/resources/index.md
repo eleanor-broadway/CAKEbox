@@ -7,16 +7,16 @@ tags: [Central themes, Resources]
 
 <!-- Turn this into lines rather than notes -->
 
-<div class="resource-layout">
+<div class="sticky-board">
 
   {% for resource in resources() %}
-    <div class="resource-box">
+    <div class="sticky-note">
       <div class="note-title">
         {{ resource.title }}
       </div>
 
       <div class="note-url">
-        <a href="{{ resource.url }}" target="_blank" rel="noopener noreferrer">
+        <a href="{{ resource.url }}">
         {{ resource.url }}     
       </div>
 

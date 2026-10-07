@@ -103,6 +103,15 @@
   opacity: 0.9;
 }
 
+.note-text a {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.note-text a:hover {
+  opacity: 0.7;
+}
 
 .sticky-note.yellow {
   background: #F1F8CA;
