@@ -15,7 +15,7 @@ tags: [Central themes, Resources]
         {{ resource.title }}
       </div>
 
-      <div class="note-url">
+      <div class="note-text">
         <a href="{{ resource.url }}">
         {{ resource.url }}     
       </div>
