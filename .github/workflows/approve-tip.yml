@@ -59,6 +59,7 @@ jobs:
               "text": text,
               "emoji": emoji,
               "color": color
+              "theme": theme
           }
 
           file_path.write_text(
