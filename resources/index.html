@@ -458,58 +458,6 @@
 
         <div class="resource-box">
             <div class="resource-title">
-                Inclusive Event Planning from Start to Finish
-            </div>
-            <div class="resource-url">
-                <a href="https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish">https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish</a>
-            </div>
-            <div class="resource-text">
-                Aimed at event organisers, workshop leads, programme committees and community organisers working in research software, the guide offers practical steps for planning accessible and inclusive events.
-            </div>
-            <div class="theme-badge">
-                edia
-            </div>
-
-        </div>
-
-        <div class="resource-box">
-            <div class="resource-title">
-                Move the Needle Project
-            </div>
-            <div class="resource-url">
-                <a href="https://www.alces-flight.com/move-the-needle/">https://www.alces-flight.com/move-the-needle/</a>
-            </div>
-            <div class="resource-text">
-                A collaborative project tracking the efforts of people trying to transform the field of supercomputing.
-            </div>
-            <div class="theme-badge">
-                edia
-            </div>
-
-        </div>
-
-        <div class="resource-box">
-            <div class="resource-title">
-                N8 CIR EDI Recruitment Checklist
-            </div>
-            <div class="resource-url">
-                <a href="https://www.n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf">https://www.n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf</a>
-            </div>
-            <div class="resource-text">
-                A checklist to aid in inclusive recruitment from assessment of current status, recruitment text, advertising and interview.
-            </div>
-            <div class="theme-badge">
-                edia
-            </div>
-
-        </div>
-
-</div>
-
-<div class="resources-board">
-
-        <div class="resource-box">
-            <div class="resource-title">
                 So, you want to reach out? Lessons from a "science for all" programme
             </div>
             <div class="resource-url">
@@ -518,6 +466,8 @@
             <div class="resource-text">
                 Blog article exploring how to design outreach programmes to be successful
             </div>
+          <div class="theme-badge">
+            Communication            </div>
         </div>
 
         <div class="resource-box">
@@ -530,6 +480,8 @@
             <div class="resource-text">
                 A journal exploring science communication and 10 simple rules for planning, developing, and evaluating science communication activities.
             </div>
+          <div class="theme-badge">
+            Communication            </div>
         </div>
 
         <div class="resource-box">
@@ -542,6 +494,8 @@
             <div class="resource-text">
                 A set of resources for running different Community Champions Programmes incl. participation models, tip sheets and experiences
             </div>
+          <div class="theme-badge">
+            Community Building            </div>
         </div>
 
         <div class="resource-box">
@@ -554,6 +508,8 @@
             <div class="resource-text">
                 Aimed at event organisers, workshop leads, programme committees and community organisers working in research software, the guide offers practical steps for planning accessible and inclusive events.
             </div>
+          <div class="theme-badge">
+            Edia            </div>
         </div>
 
         <div class="resource-box">
@@ -566,6 +522,8 @@
             <div class="resource-text">
                 A collaborative project tracking the efforts of people trying to transform the field of supercomputing.
             </div>
+          <div class="theme-badge">
+            Edia            </div>
         </div>
 
         <div class="resource-box">
@@ -578,6 +536,8 @@
             <div class="resource-text">
                 A checklist to aid in inclusive recruitment from assessment of current status, recruitment text, advertising and interview.
             </div>
+          <div class="theme-badge">
+            Edia            </div>
         </div>
 
 </div>
@@ -620,7 +580,10 @@
 
 <label for="resource-theme">What theme does this resource fit under?</label>
 
-<select id="resource-theme" onchange="toggleCustomTheme()">
+  <select
+    id="resource-theme"
+    onchange="toggleCustomTheme(); updateSubthemes();"
+  >
 
   <option value="">Select a theme...</option>
 
@@ -651,7 +614,6 @@
 
 
   <option value="other">Other — suggest a new theme</option>
-
 </select>
 
 <input
@@ -660,6 +622,88 @@
   placeholder="Enter a new theme"
   style="display: none;"
 />
+
+<div class="subtheme-picker">
+  <div class="subtheme-label">
+    Sub-themes <span>(optional)</span>
+  </div>
+
+  <div class="subtheme-grid">
+
+      <label
+        class="subtheme-option"
+        data-theme="communication"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="communication"
+        >
+        <span>Communication</span>
+      </label>
+
+      <label
+        class="subtheme-option"
+        data-theme="community-building"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="community-building"
+        >
+        <span>Community Building</span>
+      </label>
+
+      <label
+        class="subtheme-option"
+        data-theme="edia"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="edia"
+        >
+        <span>Edia</span>
+      </label>
+
+      <label
+        class="subtheme-option"
+        data-theme="event-planning"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="event-planning"
+        >
+        <span>Event Planning</span>
+      </label>
+
+      <label
+        class="subtheme-option"
+        data-theme="resources"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="resources"
+        >
+        <span>Resources</span>
+      </label>
+
+      <label
+        class="subtheme-option"
+        data-theme="tips"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="tips"
+        >
+        <span>Tips</span>
+      </label>
+
+  </div>
+</div>
 
 <button
 class="tip-submit-btn"
@@ -670,6 +714,35 @@ Submit
 
 <!-- Script that takes the user input and creates the issue -->
 <script>
+
+function updateSubthemes() {
+
+  const selectedTheme =
+    document.getElementById("resource-theme").value;
+
+  document
+    .querySelectorAll(".subtheme-option")
+    .forEach(option => {
+
+      const checkbox =
+        option.querySelector("input");
+
+      if (option.dataset.theme === selectedTheme) {
+
+        // Don't allow the primary theme
+        // to also be selected as a sub-theme
+        option.style.display = "none";
+        checkbox.checked = false;
+
+      } else {
+
+        option.style.display = "";
+
+      }
+
+    });
+}
+
 function toggleCustomTheme() {
   const themeSelect = document.getElementById("resource-theme");
   const customTheme = document.getElementById("custom-theme");
@@ -720,6 +793,16 @@ function submitResource() {
     theme = selectedTheme;
   }
 
+  const subthemes =
+    Array.from(
+      document.querySelectorAll(
+        'input[name="subthemes"]:checked'
+      )
+    ).map(
+      checkbox => checkbox.value
+    );
+
+
   if (!title || !url || !comment || !theme) {
     alert("Please fill in all fields.");
     return;
@@ -738,6 +821,21 @@ title: ${title}
 url: ${url}
 comment: ${comment}
 theme: ${theme}`;
+
+  // Only add subthemes if the user selected any
+  if (subthemes.length > 0) {
+
+    issueBody +=
+`\nsubthemes:`;
+
+    subthemes.forEach(subtheme => {
+
+      issueBody +=
+`\n  - ${subtheme}`;
+
+    });
+
+  }
 
   const githubUrl =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
