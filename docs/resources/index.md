@@ -2,28 +2,6 @@
 title: Add your own resources
 tags: [Central themes, Resources]
 ---
-
-<div class="resources-board">
-  {% for resource in resources("edia") %}
-        <div class="resource-box">
-            <div class="resource-title">
-                {{ resource.title }}
-            </div>
-            <div class="resource-url">
-                <a href="{{ resource.url }}">{{ resource.url }}</a>
-            </div>
-            <div class="resource-text">
-                {{ resource.comment }}
-            </div>
-            <div class="theme-badge">
-                {{ resource.theme }}
-            </div>
-
-        </div>
-    {% endfor %}
-</div>
-
-
 <div class="resources-board">
   {% for resource in resources() %}
         <div class="resource-box">
@@ -36,6 +14,8 @@ tags: [Central themes, Resources]
             <div class="resource-text">
                 {{ resource.comment }}
             </div>
+          <div class="theme-badge">
+            {{ resource.theme | replace("-", " ") | title }}            </div>
         </div>
     {% endfor %}
 </div>
@@ -79,7 +59,10 @@ tags: [Central themes, Resources]
 
 <label for="resource-theme">What theme does this resource fit under?</label>
 
-<select id="resource-theme" onchange="toggleCustomTheme()">
+  <select
+    id="resource-theme"
+    onchange="toggleCustomTheme(); updateSubthemes();"
+  >
 
   <option value="">Select a theme...</option>
 
@@ -90,7 +73,6 @@ tags: [Central themes, Resources]
   {% endfor %}
 
   <option value="other">Other — suggest a new theme</option>
-
 </select>
 
 <input
@@ -99,6 +81,28 @@ tags: [Central themes, Resources]
   placeholder="Enter a new theme"
   style="display: none;"
 />
+
+<div class="subtheme-picker">
+  <div class="subtheme-label">
+    Sub-themes <span>(optional)</span>
+  </div>
+
+  <div class="subtheme-grid">
+    {% for theme in themes() %}
+      <label
+        class="subtheme-option"
+        data-theme="{{ theme }}"
+      >
+        <input
+          type="checkbox"
+          name="subthemes"
+          value="{{ theme }}"
+        >
+        <span>{{ theme | replace("-", " ") | title }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
 
 <button
 class="tip-submit-btn"
@@ -111,6 +115,35 @@ Submit
 
 <!-- Script that takes the user input and creates the issue -->
 <script>
+
+function updateSubthemes() {
+
+  const selectedTheme =
+    document.getElementById("resource-theme").value;
+
+  document
+    .querySelectorAll(".subtheme-option")
+    .forEach(option => {
+
+      const checkbox =
+        option.querySelector("input");
+
+      if (option.dataset.theme === selectedTheme) {
+
+        // Don't allow the primary theme
+        // to also be selected as a sub-theme
+        option.style.display = "none";
+        checkbox.checked = false;
+
+      } else {
+
+        option.style.display = "";
+
+      }
+
+    });
+}
+
 function toggleCustomTheme() {
   const themeSelect = document.getElementById("resource-theme");
   const customTheme = document.getElementById("custom-theme");
@@ -161,6 +194,16 @@ function submitResource() {
     theme = selectedTheme;
   }
 
+  const subthemes =
+    Array.from(
+      document.querySelectorAll(
+        'input[name="subthemes"]:checked'
+      )
+    ).map(
+      checkbox => checkbox.value
+    );
+
+
   if (!title || !url || !comment || !theme) {
     alert("Please fill in all fields.");
     return;
@@ -179,6 +222,21 @@ title: ${title}
 url: ${url}
 comment: ${comment}
 theme: ${theme}`;
+
+  // Only add subthemes if the user selected any
+  if (subthemes.length > 0) {
+
+    issueBody +=
+`\nsubthemes:`;
+
+    subthemes.forEach(subtheme => {
+
+      issueBody +=
+`\n  - ${subtheme}`;
+
+    });
+
+  }
 
   const githubUrl =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
