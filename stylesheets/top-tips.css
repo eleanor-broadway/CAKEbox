@@ -66,7 +66,7 @@
 }
 
 
-.sticky-note {
+.sticky-note {  
   width: 200px;
   min-height: 100px;
   padding: 1.2rem 1.2rem 1.5rem;
@@ -83,6 +83,26 @@
   font-family: inherit;
 }
 
+.theme-sticky-badge {
+  display: inline-block;
+
+  margin: -0.2rem 0 0.6rem;
+
+  padding: 0.2rem 0.55rem;
+
+  border-radius: 999px;
+
+  font-size: 0.55rem;
+  font-weight: 700;
+  line-height: 1.2;
+
+  background: rgba(255, 255, 255, 0.45);
+  color: inherit;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  white-space: nowrap;
+}
 
 .sticky-note:hover {
   transform: rotate(0deg) translateY(-6px);
