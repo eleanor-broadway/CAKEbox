@@ -2,22 +2,54 @@
 title: Add your own resources
 tags: [Central themes, Resources]
 ---
+
+<!-- Fix formatting & test-->
+
+
+<div class="resources-filter">
+
+  <label for="theme-filter">Filter by theme:</label>
+
+  <select
+    id="theme-filter"
+    class="tip-input"
+    onchange="filterResources()"
+  >
+    <option value="">All themes</option>
+
+    {% for theme in themes() %}
+      <option value="{{ theme }}">
+        {{ theme }}
+      </option>
+    {% endfor %}
+  </select>
+
+</div>
+
 <div class="resources-board">
   {% for resource in resources() %}
-        <div class="resource-box">
-            <div class="resource-title">
-                {{ resource.title }}
-            </div>
-            <div class="resource-url">
-                <a href="{{ resource.url }}">{{ resource.url }}</a>
-            </div>
-            <div class="resource-text">
-                {{ resource.comment }}
-            </div>
-          <div class="theme-badge">
-            {{ resource.theme }}            </div>
-        </div>
-    {% endfor %}
+    <div
+      class="resource-box"
+      data-theme="{{ resource.theme }}"
+      data-subthemes="{{ resource.subthemes | join(',') }}"
+    >
+      <div class="resource-title">
+        {{ resource.title }}
+      </div>
+
+      <div class="resource-url">
+        <a href="{{ resource.url }}">{{ resource.url }}</a>
+      </div>
+
+      <div class="resource-text">
+        {{ resource.comment }}
+      </div>
+
+      <div class="theme-badge">
+        {{ resource.theme }}
+      </div>
+    </div>
+  {% endfor %}
 </div>
 
 
@@ -233,4 +265,32 @@ ${subthemes.map(subtheme => `  - ${subtheme}`).join("\n")}` : ""}`;
 
   window.open(githubUrl, "_blank");
 }
+
+function filterResources() {
+
+  const selectedTheme =
+    document.getElementById("theme-filter").value;
+
+  document
+    .querySelectorAll(".resource-box")
+    .forEach(resource => {
+
+      const primaryTheme =
+        resource.dataset.theme;
+
+      const subthemes =
+        resource.dataset.subthemes
+          ? resource.dataset.subthemes.split(",")
+          : [];
+
+      const matches =
+        !selectedTheme ||
+        primaryTheme === selectedTheme ||
+        subthemes.includes(selectedTheme);
+
+      resource.style.display =
+        matches ? "" : "none";
+    });
+}
+
 </script>
