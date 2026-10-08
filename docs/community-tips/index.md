@@ -20,32 +20,6 @@ The most helpful ideas are often simple: a practical tip, something that worked,
 
 Browse our sprinkles by the themes below or share your own. *Curated by the [CAKE team](https://www.cake.ac.uk/about/who-are-we).*
 
-<div class="tip-theme-grid">
-
-{% set themes = [
-  {"name": "Events", "tag": "events", "icon": "🎤", "desc": "Workshops, conferences and hybrid meetings."},
-  {"name": "Collaboration", "tag": "collaboration", "icon": "🤝", "desc": "Working together across teams and disciplines."},
-  {"name": "Inclusion", "tag": "inclusion", "icon": "🌍", "desc": "Accessibility and inclusive community practices."},
-  {"name": "Tools & Workflows", "tag": "tools", "icon": "🧠", "desc": "The right tools for the right job."}
-] %}
-
-{% for theme in themes %}
-
-<a class="tip-theme-card" href="../community-tips/{{ theme.tag }}/">
-<div class="tip-theme-icon">{{ theme.icon }}</div>
-<div class="tip-theme-content">
-<h3>{{ theme.name }}</h3>
-<p>{{ theme.desc }}</p>
-</div>
-
-<div class="tip-theme-arrow">→</div>
-
-</a>
-
-{% endfor %}
-
-</div>
-
 ## Contributing
 
 Click on a theme and add your post-it. It doesn’t need to be polished or perfect, even a short tip or small insight could really help someone else.
@@ -78,6 +52,30 @@ We ask contributors to:
 
 
 ---
+
+<div class="sticky-board">
+
+{% for tip in tips() %}
+
+<div class="sticky-note {{ tip.color }}">
+  <div class="theme-sticky-badge">
+      {{ tip.theme }}
+  </div>
+
+
+  <div class="note-title">
+    {{ tip.emoji }} {{ tip.title }}
+  </div>
+
+  <div class="note-text">
+    {{ tip.text }}
+  </div>
+</div>
+
+
+{% endfor %}
+
+</div>
 
 
 ## Add your sticky note
@@ -115,7 +113,7 @@ We ask contributors to:
 
   <option value="">Select a theme...</option>
 
-  {% for theme in tip_themes() %}
+  {% for theme in themes() %}
     <option value="{{ theme }}">
       {{ theme | replace("-", " ") | title }}
     </option>

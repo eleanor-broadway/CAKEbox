@@ -4,6 +4,27 @@ tags: [Central themes, Resources]
 ---
 
 <div class="resources-board">
+  {% for resource in resources("edia") %}
+        <div class="resource-box">
+            <div class="resource-title">
+                {{ resource.title }}
+            </div>
+            <div class="resource-url">
+                <a href="{{ resource.url }}">{{ resource.url }}</a>
+            </div>
+            <div class="resource-text">
+                {{ resource.comment }}
+            </div>
+            <div class="theme-badge">
+                {{ resource.theme }}
+            </div>
+
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class="resources-board">
   {% for resource in resources() %}
         <div class="resource-box">
             <div class="resource-title">
@@ -62,7 +83,7 @@ tags: [Central themes, Resources]
 
   <option value="">Select a theme...</option>
 
-  {% for theme in resource_themes() %}
+  {% for theme in themes() %}
     <option value="{{ theme }}">
       {{ theme | replace("-", " ") | title }}
     </option>
@@ -153,7 +174,8 @@ function submitResource() {
   const issueTitle = `[Resource:${theme}] ${title}`;
 
   const issueBody =
-`title: ${title}
+`type: resource
+title: ${title}
 url: ${url}
 comment: ${comment}
 theme: ${theme}`;
