@@ -309,7 +309,7 @@ text: ${text}`;
 
   const url =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
-    + "?labels=tip-submission," + theme
+    + "?labels=tip-submission"
     + "&title=" + encodeURIComponent(issueTitle)
     + "&body=" + encodeURIComponent(issueBody);
 
