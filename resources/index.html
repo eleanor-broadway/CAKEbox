@@ -430,7 +430,7 @@
       
       
       
-        <a href="../.#tag:central-themes" class="md-tag">Central themes</a>
+        <a href="../all/#tag:central-themes" class="md-tag">Central themes</a>
       
     
       
@@ -454,105 +454,203 @@
 
   <h1>Add your own resources</h1>
 
+<!-- Fix formatting & test-->
+
+<div class="resources-filter">
+
+  <label for="theme-filter">Filter by theme:</label>
+
+  <select
+    id="theme-filter"
+    class="tip-input"
+    onchange="filterResources()"
+  >
+    <option value="">All themes</option>
+
+
+      <option value="communication">
+        communication
+      </option>
+
+      <option value="community-building">
+        community-building
+      </option>
+
+      <option value="edia">
+        edia
+      </option>
+
+      <option value="event-planning">
+        event-planning
+      </option>
+
+      <option value="resources">
+        resources
+      </option>
+
+      <option value="tips">
+        tips
+      </option>
+
+  </select>
+
+</div>
+
 <div class="resources-board">
 
-        <div class="resource-box">
-            <div class="resource-title">
-                So, you want to reach out? Lessons from a "science for all" programme
-            </div>
-            <div class="resource-url">
-                <a href="https://www.timeshighereducation.com/campus/so-you-want-reach-out-lessons-science-all-programme">https://www.timeshighereducation.com/campus/so-you-want-reach-out-lessons-science-all-programme</a>
-            </div>
-            <div class="resource-text">
-                Blog article exploring how to design outreach programmes to be successful
-            </div>
-          <div class="theme-badge">
-            communication            </div>
-        </div>
+    <div
+      class="resource-box"
+      data-theme="communication"
+      data-subthemes=""
+    >
+      <div class="resource-title">
+        So, you want to reach out? Lessons from a "science for all" programme
+      </div>
 
-        <div class="resource-box">
-            <div class="resource-title">
-                Ten simple rules for scientists engaging in science communication
-            </div>
-            <div class="resource-url">
-                <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011251">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011251</a>
-            </div>
-            <div class="resource-text">
-                A journal exploring science communication and 10 simple rules for planning, developing, and evaluating science communication activities.
-            </div>
-          <div class="theme-badge">
-            communication            </div>
-        </div>
+      <div class="resource-url">
+        <a href="https://www.timeshighereducation.com/campus/so-you-want-reach-out-lessons-science-all-programme">https://www.timeshighereducation.com/campus/so-you-want-reach-out-lessons-science-all-programme</a>
+      </div>
 
-        <div class="resource-box">
-            <div class="resource-title">
-                Resources for Community Champions Programs
-            </div>
-            <div class="resource-url">
-                <a href="https://www.cscce.org/resources/community-champions-programs/">https://www.cscce.org/resources/community-champions-programs/</a>
-            </div>
-            <div class="resource-text">
-                A set of resources for running different Community Champions Programmes incl. participation models, tip sheets and experiences
-            </div>
-          <div class="theme-badge">
-            community-building            </div>
-        </div>
+      <div class="resource-text">
+        Blog article exploring how to design outreach programmes to be successful
+      </div>
 
-        <div class="resource-box">
-            <div class="resource-title">
-                Inclusive Event Planning from Start to Finish
-            </div>
-            <div class="resource-url">
-                <a href="https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish">https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish</a>
-            </div>
-            <div class="resource-text">
-                Aimed at event organisers, workshop leads, programme committees and community organisers working in research software, the guide offers practical steps for planning accessible and inclusive events.
-            </div>
-          <div class="theme-badge">
-            edia            </div>
-        </div>
+      <div class="theme-badge">
+        communication
+      </div>
+    </div>
 
-        <div class="resource-box">
-            <div class="resource-title">
-                Inclusive Hackathons Checklist
-            </div>
-            <div class="resource-url">
-                <a href="https://github.com/MarionBWeinzierl/RS-EDI/blob/main/HackathonEDI.md">https://github.com/MarionBWeinzierl/RS-EDI/blob/main/HackathonEDI.md</a>
-            </div>
-            <div class="resource-text">
-                Guidance for embedding EDIA considerations into hackathon planning and delivery.
-            </div>
-          <div class="theme-badge">
-            edia            </div>
-        </div>
+    <div
+      class="resource-box"
+      data-theme="communication"
+      data-subthemes=""
+    >
+      <div class="resource-title">
+        Ten simple rules for scientists engaging in science communication
+      </div>
 
-        <div class="resource-box">
-            <div class="resource-title">
-                Move the Needle Project
-            </div>
-            <div class="resource-url">
-                <a href="https://www.alces-flight.com/move-the-needle/">https://www.alces-flight.com/move-the-needle/</a>
-            </div>
-            <div class="resource-text">
-                A collaborative project tracking the efforts of people trying to transform the field of supercomputing.
-            </div>
-          <div class="theme-badge">
-            edia            </div>
-        </div>
+      <div class="resource-url">
+        <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011251">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011251</a>
+      </div>
 
-        <div class="resource-box">
-            <div class="resource-title">
-                N8 CIR EDI Recruitment Checklist
-            </div>
-            <div class="resource-url">
-                <a href="https://www.n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf">https://www.n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf</a>
-            </div>
-            <div class="resource-text">
-                A checklist to aid in inclusive recruitment from assessment of current status, recruitment text, advertising and interview.
-            </div>
-          <div class="theme-badge">
-            edia            </div>
-        </div>
+      <div class="resource-text">
+        A journal exploring science communication and 10 simple rules for planning, developing, and evaluating science communication activities.
+      </div>
+
+      <div class="theme-badge">
+        communication
+      </div>
+    </div>
+
+    <div
+      class="resource-box"
+      data-theme="community-building"
+      data-subthemes=""
+    >
+      <div class="resource-title">
+        Resources for Community Champions Programs
+      </div>
+
+      <div class="resource-url">
+        <a href="https://www.cscce.org/resources/community-champions-programs/">https://www.cscce.org/resources/community-champions-programs/</a>
+      </div>
+
+      <div class="resource-text">
+        A set of resources for running different Community Champions Programmes incl. participation models, tip sheets and experiences
+      </div>
+
+      <div class="theme-badge">
+        community-building
+      </div>
+    </div>
+
+    <div
+      class="resource-box"
+      data-theme="edia"
+      data-subthemes=""
+    >
+      <div class="resource-title">
+        Inclusive Event Planning from Start to Finish
+      </div>
+
+      <div class="resource-url">
+        <a href="https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish">https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish</a>
+      </div>
+
+      <div class="resource-text">
+        Aimed at event organisers, workshop leads, programme committees and community organisers working in research software, the guide offers practical steps for planning accessible and inclusive events.
+      </div>
+
+      <div class="theme-badge">
+        edia
+      </div>
+    </div>
+
+    <div
+      class="resource-box"
+      data-theme="edia"
+      data-subthemes="community-building,event-planning"
+    >
+      <div class="resource-title">
+        Inclusive Hackathons Checklist
+      </div>
+
+      <div class="resource-url">
+        <a href="https://github.com/MarionBWeinzierl/RS-EDI/blob/main/HackathonEDI.md">https://github.com/MarionBWeinzierl/RS-EDI/blob/main/HackathonEDI.md</a>
+      </div>
+
+      <div class="resource-text">
+        Guidance for embedding EDIA considerations into hackathon planning and delivery.
+      </div>
+
+      <div class="theme-badge">
+        edia
+      </div>
+    </div>
+
+    <div
+      class="resource-box"
+      data-theme="edia"
+      data-subthemes=""
+    >
+      <div class="resource-title">
+        Move the Needle Project
+      </div>
+
+      <div class="resource-url">
+        <a href="https://www.alces-flight.com/move-the-needle/">https://www.alces-flight.com/move-the-needle/</a>
+      </div>
+
+      <div class="resource-text">
+        A collaborative project tracking the efforts of people trying to transform the field of supercomputing.
+      </div>
+
+      <div class="theme-badge">
+        edia
+      </div>
+    </div>
+
+    <div
+      class="resource-box"
+      data-theme="edia"
+      data-subthemes=""
+    >
+      <div class="resource-title">
+        N8 CIR EDI Recruitment Checklist
+      </div>
+
+      <div class="resource-url">
+        <a href="https://www.n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf">https://www.n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf</a>
+      </div>
+
+      <div class="resource-text">
+        A checklist to aid in inclusive recruitment from assessment of current status, recruitment text, advertising and interview.
+      </div>
+
+      <div class="theme-badge">
+        edia
+      </div>
+    </div>
 
 </div>
 
@@ -848,6 +946,34 @@ ${subthemes.map(subtheme => `  - ${subtheme}`).join("\n")}` : ""}`;
 
   window.open(githubUrl, "_blank");
 }
+
+function filterResources() {
+
+  const selectedTheme =
+    document.getElementById("theme-filter").value;
+
+  document
+    .querySelectorAll(".resource-box")
+    .forEach(resource => {
+
+      const primaryTheme =
+        resource.dataset.theme;
+
+      const subthemes =
+        resource.dataset.subthemes
+          ? resource.dataset.subthemes.split(",")
+          : [];
+
+      const matches =
+        !selectedTheme ||
+        primaryTheme === selectedTheme ||
+        subthemes.includes(selectedTheme);
+
+      resource.style.display =
+        matches ? "" : "none";
+    });
+}
+
 </script>
 
 
