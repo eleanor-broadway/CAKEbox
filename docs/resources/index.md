@@ -15,7 +15,7 @@ tags: [Central themes, Resources]
                 {{ resource.comment }}
             </div>
           <div class="theme-badge">
-            {{ resource.theme | replace("-", " ") | title }}            </div>
+            {{ resource.theme }}            </div>
         </div>
     {% endfor %}
 </div>
@@ -98,19 +98,18 @@ tags: [Central themes, Resources]
           name="subthemes"
           value="{{ theme }}"
         >
-        <span>{{ theme | replace("-", " ") | title }}</span>
+        <span>{{ theme }}</span>
       </label>
     {% endfor %}
   </div>
 </div>
 
 <button
-class="tip-submit-btn"
-onclick="submitResource()">
-Submit
+  type="button"
+  class="tip-submit-btn"
+  onclick="submitResource()">
+  Submit
 </button>
-</div>
-
 
 
 <!-- Script that takes the user input and creates the issue -->
@@ -209,34 +208,22 @@ function submitResource() {
     return;
   }
 
-  if (!url.includes("www.")) {
-    alert("Please enter a URL that includes www.");
-    return;
-  }
+  // if (!url.includes("www.")) {
+  //   alert("Please enter a URL that includes www.");
+  //   return;
+  // }
   
   const issueTitle = `[Resource:${theme}] ${title}`;
 
-  const issueBody =
+const issueBody =
 `type: resource
 title: ${title}
 url: ${url}
 comment: ${comment}
-theme: ${theme}`;
+theme: ${theme}
+${subthemes.length > 0 ? `subthemes:
+${subthemes.map(subtheme => `  - ${subtheme}`).join("\n")}` : ""}`;
 
-  // Only add subthemes if the user selected any
-  if (subthemes.length > 0) {
-
-    issueBody +=
-`\nsubthemes:`;
-
-    subthemes.forEach(subtheme => {
-
-      issueBody +=
-`\n  - ${subtheme}`;
-
-    });
-
-  }
 
   const githubUrl =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
