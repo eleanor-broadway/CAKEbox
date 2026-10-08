@@ -467,7 +467,7 @@
                 Blog article exploring how to design outreach programmes to be successful
             </div>
           <div class="theme-badge">
-            Communication            </div>
+            communication            </div>
         </div>
 
         <div class="resource-box">
@@ -481,7 +481,7 @@
                 A journal exploring science communication and 10 simple rules for planning, developing, and evaluating science communication activities.
             </div>
           <div class="theme-badge">
-            Communication            </div>
+            communication            </div>
         </div>
 
         <div class="resource-box">
@@ -495,7 +495,7 @@
                 A set of resources for running different Community Champions Programmes incl. participation models, tip sheets and experiences
             </div>
           <div class="theme-badge">
-            Community Building            </div>
+            community-building            </div>
         </div>
 
         <div class="resource-box">
@@ -509,7 +509,7 @@
                 Aimed at event organisers, workshop leads, programme committees and community organisers working in research software, the guide offers practical steps for planning accessible and inclusive events.
             </div>
           <div class="theme-badge">
-            Edia            </div>
+            edia            </div>
         </div>
 
         <div class="resource-box">
@@ -523,7 +523,7 @@
                 A collaborative project tracking the efforts of people trying to transform the field of supercomputing.
             </div>
           <div class="theme-badge">
-            Edia            </div>
+            edia            </div>
         </div>
 
         <div class="resource-box">
@@ -537,7 +537,7 @@
                 A checklist to aid in inclusive recruitment from assessment of current status, recruitment text, advertising and interview.
             </div>
           <div class="theme-badge">
-            Edia            </div>
+            edia            </div>
         </div>
 
 </div>
@@ -639,7 +639,7 @@
           name="subthemes"
           value="communication"
         >
-        <span>Communication</span>
+        <span>communication</span>
       </label>
 
       <label
@@ -651,7 +651,7 @@
           name="subthemes"
           value="community-building"
         >
-        <span>Community Building</span>
+        <span>community-building</span>
       </label>
 
       <label
@@ -663,7 +663,7 @@
           name="subthemes"
           value="edia"
         >
-        <span>Edia</span>
+        <span>edia</span>
       </label>
 
       <label
@@ -675,7 +675,7 @@
           name="subthemes"
           value="event-planning"
         >
-        <span>Event Planning</span>
+        <span>event-planning</span>
       </label>
 
       <label
@@ -687,7 +687,7 @@
           name="subthemes"
           value="resources"
         >
-        <span>Resources</span>
+        <span>resources</span>
       </label>
 
       <label
@@ -699,18 +699,19 @@
           name="subthemes"
           value="tips"
         >
-        <span>Tips</span>
+        <span>tips</span>
       </label>
 
   </div>
 </div>
 
 <button
-class="tip-submit-btn"
-onclick="submitResource()">
-Submit
+  type="button"
+  class="tip-submit-btn"
+  onclick="submitResource()">
+  Submit
 </button>
-</div>
+
 
 <!-- Script that takes the user input and creates the issue -->
 <script>
@@ -808,34 +809,22 @@ function submitResource() {
     return;
   }
 
-  if (!url.includes("www.")) {
-    alert("Please enter a URL that includes www.");
-    return;
-  }
+  // if (!url.includes("www.")) {
+  //   alert("Please enter a URL that includes www.");
+  //   return;
+  // }
 
   const issueTitle = `[Resource:${theme}] ${title}`;
 
-  const issueBody =
+const issueBody =
 `type: resource
 title: ${title}
 url: ${url}
 comment: ${comment}
-theme: ${theme}`;
+theme: ${theme}
+${subthemes.length > 0 ? `subthemes:
+${subthemes.map(subtheme => `  - ${subtheme}`).join("\n")}` : ""}`;
 
-  // Only add subthemes if the user selected any
-  if (subthemes.length > 0) {
-
-    issueBody +=
-`\nsubthemes:`;
-
-    subthemes.forEach(subtheme => {
-
-      issueBody +=
-`\n  - ${subtheme}`;
-
-    });
-
-  }
 
   const githubUrl =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
