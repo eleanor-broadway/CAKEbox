@@ -177,20 +177,17 @@ Found a useful website, tool, guide, or other resource? Share the link and tell 
     Select additional keyword(s) <span>(optional)</span>
   </div>
 
-  <div class="keyword-grid">
-    {% for theme in themes() %}
-      <label
-        class="keyword-option"
-        data-theme="{{ theme }}"
+<div class="keyword-grid">
+  {% for keyword in keywords() %}
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="{{ keyword }}"
       >
-        <input
-          type="checkbox"
-          name="keywords"
-          value="{{ theme }}"
-        >
-        <span>{{ theme | replace("-", " ") | title }}</span>
-      </label>
-    {% endfor %}
+      <span>{{ keyword }}</span>
+    </label>
+  {% endfor %}
 
     <label class="keyword-option custom-keyword-option">
       <input
@@ -420,20 +417,17 @@ The most helpful ideas are often simple: a practical tip, something that worked,
     Select additional keyword(s) <span>(optional)</span>
   </div>
 
-  <div class="keyword-grid">
-    {% for theme in themes() %}
-      <label
-        class="keyword-option"
-        data-theme="{{ theme }}"
+<div class="keyword-grid">
+  {% for keyword in keywords() %}
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="{{ keyword }}"
       >
-        <input
-          type="checkbox"
-          name="keywords"
-          value="{{ theme }}"
-        >
-        <span>{{ theme | replace("-", " ") | title }}</span>
-      </label>
-    {% endfor %}
+      <span>{{ keyword }}</span>
+    </label>
+  {% endfor %}
 
     <label class="keyword-option custom-keyword-option">
       <input

@@ -1,14 +1,11 @@
+
 import yaml
 from pathlib import Path
 
 def define_env(env):
 
     def load_tips(theme=None):
-
-        if theme: 
-            folder = Path(f"data/{theme}")
-        else: 
-            folder = Path(f"data")
+        folder = Path(f"data/{theme}") if theme else Path("data")
 
         if not folder.exists():
             return []
@@ -16,9 +13,7 @@ def define_env(env):
         all_tips = []
 
         for file in sorted(folder.rglob("*.yml")):
-            data = yaml.safe_load(
-                file.read_text(encoding="utf-8")
-            )
+            data = yaml.safe_load(file.read_text(encoding="utf-8"))
 
             if data and data.get("type") == "tip":
                 all_tips.append(data)
@@ -26,11 +21,7 @@ def define_env(env):
         return all_tips
 
     def load_resources(theme=None):
-
-        if theme: 
-            folder = Path(f"data/{theme}")
-        else:     
-            folder = Path(f"data")
+        folder = Path(f"data/{theme}") if theme else Path("data")
 
         if not folder.exists():
             return []
@@ -38,18 +29,14 @@ def define_env(env):
         all_resources = []
 
         for file in sorted(folder.rglob("*.yml")):
-            data = yaml.safe_load(
-                file.read_text(encoding="utf-8")
-            )
+            data = yaml.safe_load(file.read_text(encoding="utf-8"))
 
             if data and data.get("type") == "resource":
                 all_resources.append(data)
 
         return all_resources
 
-
     def get_themes():
-
         folder = Path("data")
 
         if not folder.exists():
@@ -61,6 +48,33 @@ def define_env(env):
             if directory.is_dir()
         )
 
+    def get_keywords():
+        folder = Path("data")
+
+        if not folder.exists():
+            return []
+
+        all_keywords = set()
+
+        for file in sorted(folder.rglob("*.yml")):
+            data = yaml.safe_load(file.read_text(encoding="utf-8"))
+
+            if not isinstance(data, dict):
+                continue
+
+            keywords = data.get("keywords", [])
+
+            if isinstance(keywords, str):
+                keywords = [keywords]
+
+            if isinstance(keywords, list):
+                for keyword in keywords:
+                    if isinstance(keyword, str) and keyword.strip():
+                        all_keywords.add(keyword.strip())
+
+        return sorted(all_keywords, key=str.casefold)
+
     env.variables["resources"] = load_resources
     env.variables["themes"] = get_themes
     env.variables["tips"] = load_tips
+    env.variables["keywords"] = get_keywords
