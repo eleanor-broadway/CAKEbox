@@ -64,17 +64,71 @@
 
 /* Resource submission box */
 
+
+/* Resource submission box — match resource output */
+
 .resources-submit-box {
+  position: relative;
   width: 100%;
   box-sizing: border-box;
 
   margin: 2.5rem 0 2rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1.25rem;
 
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: none;
+  border-left: 3px solid #aaa;
+  border-radius: 0 5px 5px 0;
 
-  background: transparent;
+  background: rgba(0, 0, 0, 0.025);
+  font-family: inherit;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.resources-submit-box:hover {
+  border-left-color: #666;
+  background: rgba(0, 0, 0, 0.045);
+}
+
+.resources-submit-description {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.resources-submit-helper {
+  margin-bottom: 1rem;
+
+  font-size: 0.85rem;
+  line-height: 1.45;
+  opacity: 0.7;
+}
+
+/* Match the resource form fields to the resource card */
+.resources-submit-box input,
+.resources-submit-box textarea,
+.resources-submit-box select,
+.resources-submit-box #resource-theme {
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font-family: inherit;
+}
+
+.resources-submit-box input:focus,
+.resources-submit-box textarea:focus,
+.resources-submit-box select:focus,
+.resources-submit-box #resource-theme:focus {
+  outline: none;
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
 .resources-submit-description {
