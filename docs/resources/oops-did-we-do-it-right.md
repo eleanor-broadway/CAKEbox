@@ -1,6 +1,5 @@
 ---
 title: Oops did we do it right? Lessons from Successful Collaborations 
-tags: [Collaboration & Community Building]
 ---
 
 At the [SSI Collaborations Workshop 2026](https://www.software.ac.uk/workshop/collaborations-workshop-2026-cw26), Eleanor Broadway and Eva Fernandez-Amez ran a session exploring how we can design and support successful collaborations. This is the write-up from that session, capturing the experiences, challenges and advice shared by participants.
