@@ -334,6 +334,15 @@ function submitResource() {
     url = "https://" + url;
   }
 
+  if (
+      title.includes(":") ||
+      comment.includes(":") ||
+      keywords.some(keyword => keyword.includes(":"))
+    ) {
+    alert("Only the URL can contain a colon (:).");
+    return;
+  }
+
   if (!title || !url || !comment || !theme) {
     alert("Please fill in all required fields and select a theme.");
     return;
@@ -646,28 +655,14 @@ function submitTip() {
     .querySelector(".colour-btn.active")
     .dataset.colour;
 
-  // let theme;
-
-  // if (selectedTheme === "other") {
-  //   theme = document
-  //     .getElementById("custom-theme")
-  //     .value
-  //     .trim()
-  //     .toLowerCase()
-  //     .replace(/\s+/g, "-");
-  // } else {
-  //   theme = selectedTheme;
-  // }
-
-  // const keywords =
-  //   Array.from(
-  //     document.querySelectorAll(
-  //       'input[name="keywords"]:checked'
-  //     )
-  //   ).map(
-  //     checkbox => checkbox.value
-  //   );
-
+  if (
+      title.includes(":") ||
+      text.includes(":") ||
+      keywords.some(keyword => keyword.includes(":"))
+    ) {
+    alert("Only the URL can contain a colon (:).");
+    return;
+  }
 
   if (!title || !text || !theme) {
     alert("Please fill in all fields.");
