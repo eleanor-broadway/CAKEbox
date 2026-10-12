@@ -1,18 +1,12 @@
 ---
 title: Sprinkles of Knowledge
-tags: [Central themes, Sprinkles of Knowledge]
+tags: 
 ---
-
-
 <style>
 .md-content h1:first-of-type::before {
   content: "🧁";
 }
-
-
 </style>
-
-
 
 Welcome to **Sprinkles of Knowledge!** This is where you can find quick tips, advice, and experiences from our community.
 
@@ -20,12 +14,72 @@ The most helpful ideas are often simple: a practical tip, something that worked,
 
 Browse our sprinkles by the themes below or share your own. *Curated by the [CAKE team](https://www.cake.ac.uk/about/who-are-we).*
 
-## Contributing
+## Explore by theme
 
-Click on a theme and add your post-it. It doesn’t need to be polished or perfect, even a short tip or small insight could really help someone else.
+Looking for something specific? Choose a theme and/or keyword to filter the resources and community tips below.
 
-!!! question "Have something else to share?"
-    Struggling to place your contribution? Get in touch and we can help or create a new theme. Contact the CAKE team on [Slack](https://join.slack.com/t/cake-dri/shared_invite/zt-3w3ymqha8-SnreNHd4W3V8pBEwsfZrxA) or via email at [cake@jiscmail.ac.uk](cake@jiscmail.ac.uk). 
+<div class="resources-filter">
+
+  <label for="theme-filter"><b>Filter by theme:</b></label>
+
+  <select
+    id="theme-filter"
+    class="tip-input"
+    onchange="filterResources()"
+  >
+    <option value="">All themes</option>
+
+    {% for theme in themes() %}
+      <option value="{{ theme }}">
+        {{ theme }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <label for="keyword-filter"><b>Optionally, also choose another keyword:</b></label>
+  <select
+    id="keyword-filter"
+    class="tip-input"
+    onchange="filterResources()"
+    disabled
+  >
+    <option value="">All keywords</option>
+  </select>
+
+</div>
+
+<div class="sticky-board">
+  {% for tip in tips() %}
+
+  <div class="sticky-note {{ tip.color }}"
+          data-theme="{{ tip.theme }}"
+        data-keywords="{{ tip.keywords | join(',') }}"
+      >
+
+    <!-- <div class="theme-sticky-badge">
+        {{ tip.theme }}
+    </div> -->
+
+
+    <div class="note-title">
+      {{ tip.emoji }} {{ tip.title }}
+    </div>
+
+    <div class="note-text">
+      {{ tip.text }}
+    </div>
+</div>
+
+
+{% endfor %}
+
+</div>
+
+## Contribute your own Sprinkles
+
+The most helpful ideas are often simple: a practical tip, something that worked, a mistake to avoid, or a small insight from experience.
+
+Use the submission below to add your post-it. It doesn’t need to be polished or perfect, even a short tip or small insight could really help someone else.
 
 ---
 
@@ -50,47 +104,18 @@ We ask contributors to:
 * Focus on what is best for the community
 * Show courtesy and respect towards others
 
-
 ---
 
-<div class="sticky-board">
-
-{% for tip in tips() %}
-
-<div class="sticky-note {{ tip.color }}">
-  <div class="theme-sticky-badge">
-      {{ tip.theme }}
-  </div>
-
-
-  <div class="note-title">
-    {{ tip.emoji }} {{ tip.title }}
-  </div>
-
-  <div class="note-text">
-    {{ tip.text }}
-  </div>
-</div>
-
-
-{% endfor %}
-
-</div>
-
-
-## Add your sticky note
-
-<div class="submit-box">
+<div class="submit-box" id="tip-submit-box">
 
   <p class="submit-description">
-    Share a tip, lesson learned, or useful advice with the community.
+    Share a quick tip, lesson learned, or useful advice with the community.
   </p>
 
   <p class="submit-helper">
   </br>
-  After clicking <strong>Submit</strong>, a GitHub issue will open
-  with your tip pre-filled. Simply click <strong>"Create"</strong>
-  to send it to the CAKE team for review before it goes live.
+    After clicking <strong>Submit</strong>, a GitHub issue will open
+    to send it to the CAKE team for review before it goes live.
 </p>
 
   <input
@@ -107,28 +132,60 @@ We ask contributors to:
 
   <div class="tip-controls">
 
-<label for="tip-theme">What theme does this tip fit under?</label>
+<label for="tip-theme">Select a general theme to help us sort this tip:</label>
 
-<select id="tip-theme" onchange="toggleCustomTheme()">
+  <select
+    id="tip-theme"
+    onchange="updateTipkeywords()"
+  >
 
-  <option value="">Select a theme...</option>
+  <option value="">Select a theme</option>
 
   {% for theme in themes() %}
     <option value="{{ theme }}">
       {{ theme | replace("-", " ") | title }}
     </option>
   {% endfor %}
-
-  <option value="other">Other — suggest a new theme</option>
-
+  <!-- <option value="other">Other — suggest a new theme</option> -->
 </select>
 
-<input
-  id="custom-theme"
-  class="tip-input"
-  placeholder="Enter a new theme"
-  style="display: none;"
-/>
+
+<div class="keyword-picker">
+  <div class="keyword-label">
+    Select additional keyword(s) <span>(optional)</span>
+  </div>
+
+<div class="keyword-grid">
+  {% for keyword in keywords() %}
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="{{ keyword }}"
+      >
+      <span>{{ keyword }}</span>
+    </label>
+  {% endfor %}
+
+    <label class="keyword-option custom-keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="__other__"
+        onchange="toggleCustomKeyword('tip', this)"
+      >
+      <span>Other</span>
+    </label>
+  </div>
+
+  <input
+    type="text"
+    id="tip-custom-keyword"
+    class="tip-input"
+    placeholder="Enter a custom keyword"
+    style="display: none;"
+  >
+</div>
 
 
 <div class="emoji-picker">
@@ -198,34 +255,39 @@ We ask contributors to:
 </div>
 
 <button
-class="tip-submit-btn"
-onclick="submitTip()">
-Submit
+  type="button"
+  class="tip-submit-btn"
+  onclick="submitTip()">
+  Submit
 </button>
-</div>
-
-
 
 </div>
 
+!!! question "Have something else to share?"
+    Check out our [Contributing Guide](/CAKEbox/docs/how-to-contribute/index.md) for ways to add other types of resources  
 
 
 <script>
+function toggleCustomKeyword(type, checkbox) {
+  const input = document.getElementById(
+    type + "-custom-keyword"
+  );
 
-document.querySelectorAll(".emoji-btn").forEach(btn => {
+  if (!input || !checkbox) return;
 
-  btn.addEventListener("click", () => {
+  input.style.display = checkbox.checked
+    ? "block"
+    : "none";
 
-    document
-      .querySelectorAll(".emoji-btn")
-      .forEach(b => b.classList.remove("active"));
-
-    btn.classList.add("active");
-  });
-
-});
+  if (!checkbox.checked) {
+    input.value = "";
+  }
+}
 
 </script>
+
+
+
 
 <script>
 
@@ -245,16 +307,85 @@ document.querySelectorAll(".colour-btn").forEach(btn => {
 </script>
 
 <script>
-function toggleCustomTheme() {
-  const themeSelect = document.getElementById("tip-theme");
-  const customTheme = document.getElementById("custom-theme");
+document.querySelectorAll(".emoji-btn").forEach(btn => {
 
-  if (themeSelect.value === "other") {
-    customTheme.style.display = "block";
-  } else {
-    customTheme.style.display = "none";
-    customTheme.value = "";
+  btn.addEventListener("click", () => {
+
+    document
+      .querySelectorAll(".emoji-btn")
+      .forEach(b => b.classList.remove("active"));
+
+    btn.classList.add("active");
+  });
+
+});
+
+
+function updateTipkeywords() {
+  const selectedTheme =
+    document.getElementById("tip-theme").value;
+
+  document.querySelectorAll(
+    ".keyword-picker .keyword-option"
+  ).forEach(option => {
+    const checkbox = option.querySelector("input");
+
+    // Keep the custom keyword option visible
+    if (checkbox.value === "__other__") return;
+
+    const isPrimaryTheme =
+      option.dataset.theme === selectedTheme;
+
+    option.style.display = isPrimaryTheme ? "none" : "";
+
+    if (isPrimaryTheme) {
+      checkbox.checked = false;
+    }
+  });
+}
+
+// function toggleCustomKeyword(type) {
+//   const checkbox = document.querySelector(
+//     '.keyword-picker input[value="__other__"]'
+//   );
+
+//   const input = document.getElementById(
+//     `${type}-custom-keyword`
+//   );
+
+//   if (!checkbox || !input) return;
+
+//   input.style.display = checkbox.checked ? "block" : "none";
+
+//   if (!checkbox.checked) {
+//     input.value = "";
+//   }
+// }
+
+function getSelectedTipKeywords() {
+  const keywords = Array.from(
+    document.querySelectorAll(
+      '#tip-submit-box .keyword-picker input[name="keywords"]:checked'
+    )  
+  )
+    .map(checkbox => checkbox.value)
+    .filter(keyword => keyword !== "__other__");
+
+  const customKeyword = document
+    .getElementById("tip-custom-keyword")
+    .value.trim();
+
+  if (customKeyword) {
+    keywords.push(customKeyword);
   }
+
+  // Remove duplicates, ignoring case
+  return [...new Map(
+    keywords.map(keyword => [
+      keyword.toLowerCase(),
+      keyword
+    ])
+  ).values()];
 }
 
 function submitTip() {
@@ -268,28 +399,26 @@ function submitTip() {
   const emoji =
     document.querySelector(".emoji-btn.active").textContent;
 
-  const selectedTheme = document
+  // Only existing themes can be selected
+  const theme = document
     .getElementById("tip-theme")
     .value;
+
+  const keywords = getSelectedTipKeywords();
 
   const color =
     document
     .querySelector(".colour-btn.active")
     .dataset.colour;
 
-  let theme;
-
-  if (selectedTheme === "other") {
-    theme = document
-      .getElementById("custom-theme")
-      .value
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "-");
-  } else {
-    theme = selectedTheme;
+  if (
+      title.includes(":") ||
+      text.includes(":") ||
+      keywords.some(keyword => keyword.includes(":"))
+    ) {
+    alert("Only the URL can contain a colon (:).");
+    return;
   }
-
 
   if (!title || !text || !theme) {
     alert("Please fill in all fields.");
@@ -305,7 +434,9 @@ theme: ${theme}
 title: ${title}
 emoji: ${emoji}
 color: ${color}
-text: ${text}`;
+text: ${text}
+${keywords.length > 0 ? `keywords:
+${keywords.map(keyword => `  - ${keyword}`).join("\n")}` : ""}`;
 
   const url =
     "https://github.com/eleanor-broadway/CAKEbox/issues/new"
@@ -315,7 +446,104 @@ text: ${text}`;
 
   window.open(url, "_blank");
 }
+
 </script>
+
+
+
+
+<!-- Filter both the resources and the sticky notes -->
+<script>
+
+function updateKeywordFilter() {
+  const selectedTheme =
+    document.getElementById("theme-filter").value;
+
+  const keywordFilter =
+    document.getElementById("keyword-filter");
+
+  // Remember the current keyword, if possible
+  const previousKeyword = keywordFilter.value;
+
+  // Reset the dropdown
+  keywordFilter.innerHTML =
+    '<option value="">All keywords</option>';
+
+  // Require a theme before selecting a keyword
+  keywordFilter.disabled = !selectedTheme;
+
+  if (!selectedTheme) {
+    return;
+  }
+
+  // Collect keywords belonging to the selected theme
+  const keywords = new Set();
+
+  document.querySelectorAll(
+    ".resource-box, .sticky-note"
+  ).forEach(item => {
+    if (item.dataset.theme !== selectedTheme) {
+      return;
+    }
+
+    const itemKeywords = item.dataset.keywords
+      ? item.dataset.keywords.split(",")
+      : [];
+
+    itemKeywords.forEach(keyword => {
+      const cleanedKeyword = keyword.trim();
+
+      if (cleanedKeyword) {
+        keywords.add(cleanedKeyword);
+      }
+    });
+  });
+
+  // Populate the dropdown alphabetically
+  [...keywords].sort().forEach(keyword => {
+    const option = document.createElement("option");
+    option.value = keyword;
+    option.textContent = keyword;
+    keywordFilter.appendChild(option);
+  });
+
+  // Preserve the selection if it's still available
+  if (keywords.has(previousKeyword)) {
+    keywordFilter.value = previousKeyword;
+  }
+}
+
+function filterResources() {
+  const selectedTheme =
+    document.getElementById("theme-filter").value;
+
+  // Refresh available keywords when the theme changes
+  updateKeywordFilter();
+
+  const selectedKeyword =
+    document.getElementById("keyword-filter").value;
+
+  document.querySelectorAll(
+    ".resource-box, .sticky-note"
+  ).forEach(item => {
+    const primaryTheme = item.dataset.theme;
+
+    const keywords = item.dataset.keywords
+      ? item.dataset.keywords.split(",").map(k => k.trim())
+      : [];
+
+    const matchesTheme =
+      !selectedTheme || primaryTheme === selectedTheme;
+
+    const matchesKeyword =
+      !selectedKeyword || keywords.includes(selectedKeyword);
+
+    item.style.display =
+      matchesTheme && matchesKeyword ? "" : "none";
+  });
+}
+</script>
+
 
 
 <script>

@@ -1,15 +1,19 @@
 ---
-title: Resources & Community Tips
+title: 
 tags: [Key Themes]
 ---
 
-Discover useful resources, practical advice, and lessons learned from across the CAKE community. Explore what others have shared, or contribute something that might help someone else.
+Discover useful resources, practical advice, and lessons learned from across the CAKE community. Explore what others have shared, or contribute something that might help someone else! *Curated by the [CAKE team](https://www.cake.ac.uk/about/who-are-we).*
+
+- [Explore by theme](#explore-by-theme)
+- [Useful Resources](#useful-resources)
+- [Sprinkles of Knowledge](#sprinkles-of-knowledge)
+- [Add your own](#have-something-to-share)
 
 ## Explore by theme
 
 Looking for something specific? Choose a theme and/or keyword to filter the resources and community tips below.
 
-<!-- What about the resources which are not .yml? -->
 <div class="resources-filter">
 
   <label for="theme-filter"><b>Filter by theme:</b></label>
@@ -43,7 +47,7 @@ Looking for something specific? Choose a theme and/or keyword to filter the reso
 
 
 
-## Linked resources 
+## Useful Resources 
 
 Explore websites, tools, guides, and other resources shared by the community. Each resource includes a short description to help you decide whether it's useful for your work.
 
@@ -83,7 +87,9 @@ Explore websites, tools, guides, and other resources shared by the community. Ea
 </div>
 
 
-## Community Tips 
+## Sprinkles of Knowledge
+
+Welcome to **Sprinkles of Knowledge!** This is where you can find quick tips, advice, and experiences from our community. The most helpful ideas are often simple: a practical tip, something that worked, a mistake to avoid, or a small insight from experience.
 
 <div class="sticky-board">
   {% for tip in tips() %}
@@ -112,268 +118,16 @@ Explore websites, tools, guides, and other resources shared by the community. Ea
 
 </div>
 
-## Contribute to the community
+<br>
 
-### Link a new resource 
+## Have something to share?
 
-Found a useful website, tool, guide, or other resource? Share the link and tell us briefly what makes it valuable.
+Found a resource that's helped you collaborate? Share it with the community! Got a tip or idea of your own? Add a little sprinkle of knowledge, too.
 
-<!-- Box for users to submit a new resource -->
-<div class="resources-submit-box" id="resource-submit-box">
-
-  <p class="resources-submit-description">
-    Have a resource to share?
-  </p>
-
-  <p class="resources-submit-helper">
-    We'd love to hear about websites, tools, guides, or other resources you've found useful. Post the link and tell us a little about what makes it worth sharing.
-  </p>
-
-  <p class="resources-submit-helper">
-    </br>
-    After clicking <strong>Submit</strong>, a GitHub issue will open
-    to send it to the CAKE team for review before it goes live.
-  </p>
-
-  <input
-    class="tip-input"
-    id="resource-title"
-    placeholder="Title"
-  />
-
-  <input
-    class="tip-input"
-    id="resource-url"
-    placeholder="Paste the link to the resource"
-  />
-
-  <textarea
-    class="tip-textarea"
-    id="resource-comment"
-    placeholder="What makes this resource useful? Tell us a little about it..."
-  ></textarea>
+Whatever you'd like to share, it's quick and easy. Go for it! :)
 
 
-<label for="resource-theme">
-  Select a general theme to help us sort this resouce:
-</label>
-
-<select
-  id="resource-theme"
-  onchange="updateResourcekeywords()"
->
-  <option value="">Select a theme</option>
-
-  {% for theme in themes() %}
-    <option value="{{ theme }}">
-      {{ theme | replace("-", " ") | title }}
-    </option>
-  {% endfor %}
-</select>
-
-
-<div class="keyword-picker">
-  <div class="keyword-label">
-    Select additional keyword(s) <span>(optional)</span>
-  </div>
-
-<div class="keyword-grid">
-  {% for keyword in keywords() %}
-    <label class="keyword-option">
-      <input
-        type="checkbox"
-        name="keywords"
-        value="{{ keyword }}"
-      >
-      <span>{{ keyword }}</span>
-    </label>
-  {% endfor %}
-
-    <label class="keyword-option custom-keyword-option">
-      <input
-        type="checkbox"
-        name="keywords"
-        value="__other__"
-        onchange="toggleCustomKeyword('resource', this)"
-      >
-      <span>Other</span>
-    </label>
-  </div>
-
-  <input
-    type="text"
-    id="resource-custom-keyword"
-    class="tip-input"
-    placeholder="Enter a custom keyword"
-    style="display: none;"
-  >
-</div>
-
-
-<button
-  type="button"
-  class="tip-submit-btn"
-  onclick="submitResource()">
-  Submit
-</button>
-</div>
-
-
-<!-- Script that takes the user input and creates the issue -->
-
-<script>
-function updateResourcekeywords() {
-  const selectedTheme =
-    document.getElementById("resource-theme").value;
-
-  document.querySelectorAll(
-    ".keyword-picker .keyword-option"
-  ).forEach(option => {
-    const checkbox = option.querySelector("input");
-
-    // Keep the custom keyword option visible
-    if (checkbox.value === "__other__") return;
-
-    const isPrimaryTheme =
-      option.dataset.theme === selectedTheme;
-
-    option.style.display = isPrimaryTheme ? "none" : "";
-
-    if (isPrimaryTheme) {
-      checkbox.checked = false;
-    }
-  });
-}
-
-
-// function toggleCustomKeyword(type, checkbox) {
-//   const input = document.getElementById(
-//     `${type}-custom-keyword`
-//   );
-
-//   if (!input || !checkbox) return;
-
-//   input.style.display = checkbox.checked ? "block" : "none";
-
-//   if (!checkbox.checked) {
-//     input.value = "";
-//   }
-// }
-
-
-function toggleCustomKeyword(type, checkbox) {
-  const input = document.getElementById(
-    type + "-custom-keyword"
-  );
-
-  if (!input || !checkbox) return;
-
-  input.style.display = checkbox.checked
-    ? "block"
-    : "none";
-
-  if (!checkbox.checked) {
-    input.value = "";
-  }
-}
-
-
-
-function getSelectedResourceKeywords() {
-  const keywords = Array.from(
-    document.querySelectorAll(
-      '#resource-submit-box .keyword-picker input[name="keywords"]:checked'
-    )
-  )
-    .map(checkbox => checkbox.value)
-    .filter(keyword => keyword !== "__other__");
-
-  const customKeyword = document
-    .getElementById("resource-custom-keyword")
-    .value.trim();
-
-  if (customKeyword) {
-    keywords.push(customKeyword);
-  }
-
-  // Remove duplicates, ignoring case
-  return [...new Map(
-    keywords.map(keyword => [
-      keyword.toLowerCase(),
-      keyword
-    ])
-  ).values()];
-}
-
-function submitResource() {
-  const title = document
-    .getElementById("resource-title")
-    .value.trim();
-
-  let url = document
-    .getElementById("resource-url")
-    .value.trim();
-
-  const comment = document
-    .getElementById("resource-comment")
-    .value.trim();
-
-  // Only existing themes can be selected
-  const theme = document
-    .getElementById("resource-theme")
-    .value;
-
-  const keywords = getSelectedResourceKeywords();
-
-  // Add https:// when no protocol is provided
-  if (
-    url &&
-    !url.startsWith("http://") &&
-    !url.startsWith("https://")
-  ) {
-    url = "https://" + url;
-  }
-
-  if (
-      title.includes(":") ||
-      comment.includes(":") ||
-      keywords.some(keyword => keyword.includes(":"))
-    ) {
-    alert("Only the URL can contain a colon (:).");
-    return;
-  }
-
-  if (!title || !url || !comment || !theme) {
-    alert("Please fill in all required fields and select a theme.");
-    return;
-  }
-
-  // Prevent the "Other" control itself being saved as a keyword
-  const issueTitle = `[Resource:${theme}] ${title}`;
-
-  const issueBody =
-`type: resource
-title: ${title}
-url: ${url}
-comment: ${comment}
-theme: ${theme}
-${keywords.length > 0
-  ? `keywords:\n${keywords.map(keyword => `  - ${keyword}`).join("\n")}`
-  : ""}`;
-
-  const githubUrl =
-    "https://github.com/eleanor-broadway/CAKEbox/issues/new"
-    + "?labels=resource-submission"
-    + "&title=" + encodeURIComponent(issueTitle)
-    + "&body=" + encodeURIComponent(issueBody);
-
-  window.open(githubUrl, "_blank");
-}
-</script>
-
-
-
-### Share a new tip 
+### Share a new Sprinkle of Knowledge 
 
 The most helpful ideas are often simple: a practical tip, something that worked, a mistake to avoid, or a small insight from experience.
 
@@ -531,6 +285,274 @@ The most helpful ideas are often simple: a practical tip, something that worked,
   onclick="submitTip()">
   Submit
 </button>
+
+</div>
+
+
+
+### Link a useful resource 
+
+Found a useful website, tool, guide, or other resource? Share the link and tell us briefly what makes it valuable.
+
+<!-- Box for users to submit a new resource -->
+<div class="resources-submit-box" id="resource-submit-box">
+
+  <p class="resources-submit-description">
+    Have a resource to share?
+  </p>
+
+  <p class="resources-submit-helper">
+    We'd love to hear about websites, tools, guides, or other resources you've found useful. Post the link and tell us a little about what makes it worth sharing.
+  </p>
+
+  <p class="resources-submit-helper">
+    </br>
+    After clicking <strong>Submit</strong>, a GitHub issue will open
+    to send it to the CAKE team for review before it goes live.
+  </p>
+
+  <input
+    class="tip-input"
+    id="resource-title"
+    placeholder="Title"
+  />
+
+  <input
+    class="tip-input"
+    id="resource-url"
+    placeholder="Paste the link to the resource"
+  />
+
+  <textarea
+    class="tip-textarea"
+    id="resource-comment"
+    placeholder="What makes this resource useful? Tell us a little about it..."
+  ></textarea>
+
+
+<label for="resource-theme">
+  Select a general theme to help us sort this resouce:
+</label>
+
+<select
+  id="resource-theme"
+  onchange="updateResourcekeywords()"
+>
+  <option value="">Select a theme</option>
+
+  {% for theme in themes() %}
+    <option value="{{ theme }}">
+      {{ theme | replace("-", " ") | title }}
+    </option>
+  {% endfor %}
+</select>
+
+
+<div class="keyword-picker">
+  <div class="keyword-label">
+    Select additional keyword(s) <span>(optional)</span>
+  </div>
+
+<div class="keyword-grid">
+  {% for keyword in keywords() %}
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="{{ keyword }}"
+      >
+      <span>{{ keyword }}</span>
+    </label>
+  {% endfor %}
+
+    <label class="keyword-option custom-keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="__other__"
+        onchange="toggleCustomKeyword('resource', this)"
+      >
+      <span>Other</span>
+    </label>
+  </div>
+
+  <input
+    type="text"
+    id="resource-custom-keyword"
+    class="tip-input"
+    placeholder="Enter a custom keyword"
+    style="display: none;"
+  >
+</div>
+
+
+<button
+  type="button"
+  class="tip-submit-btn"
+  onclick="submitResource()">
+  Submit
+</button>
+</div>
+
+</br>
+
+### Something else?
+
+Have another idea for contributing to CAKEbox? Find out how you can get involved [here](/how-to-contribute/). 
+
+
+<!-- Script that takes the user input and creates the issue -->
+<script>
+function updateResourcekeywords() {
+  const selectedTheme =
+    document.getElementById("resource-theme").value;
+
+  document.querySelectorAll(
+    ".keyword-picker .keyword-option"
+  ).forEach(option => {
+    const checkbox = option.querySelector("input");
+
+    // Keep the custom keyword option visible
+    if (checkbox.value === "__other__") return;
+
+    const isPrimaryTheme =
+      option.dataset.theme === selectedTheme;
+
+    option.style.display = isPrimaryTheme ? "none" : "";
+
+    if (isPrimaryTheme) {
+      checkbox.checked = false;
+    }
+  });
+}
+
+
+// function toggleCustomKeyword(type, checkbox) {
+//   const input = document.getElementById(
+//     `${type}-custom-keyword`
+//   );
+
+//   if (!input || !checkbox) return;
+
+//   input.style.display = checkbox.checked ? "block" : "none";
+
+//   if (!checkbox.checked) {
+//     input.value = "";
+//   }
+// }
+
+
+function toggleCustomKeyword(type, checkbox) {
+  const input = document.getElementById(
+    type + "-custom-keyword"
+  );
+
+  if (!input || !checkbox) return;
+
+  input.style.display = checkbox.checked
+    ? "block"
+    : "none";
+
+  if (!checkbox.checked) {
+    input.value = "";
+  }
+}
+
+
+
+function getSelectedResourceKeywords() {
+  const keywords = Array.from(
+    document.querySelectorAll(
+      '#resource-submit-box .keyword-picker input[name="keywords"]:checked'
+    )
+  )
+    .map(checkbox => checkbox.value)
+    .filter(keyword => keyword !== "__other__");
+
+  const customKeyword = document
+    .getElementById("resource-custom-keyword")
+    .value.trim();
+
+  if (customKeyword) {
+    keywords.push(customKeyword);
+  }
+
+  // Remove duplicates, ignoring case
+  return [...new Map(
+    keywords.map(keyword => [
+      keyword.toLowerCase(),
+      keyword
+    ])
+  ).values()];
+}
+
+function submitResource() {
+  const title = document
+    .getElementById("resource-title")
+    .value.trim();
+
+  let url = document
+    .getElementById("resource-url")
+    .value.trim();
+
+  const comment = document
+    .getElementById("resource-comment")
+    .value.trim();
+
+  // Only existing themes can be selected
+  const theme = document
+    .getElementById("resource-theme")
+    .value;
+
+  const keywords = getSelectedResourceKeywords();
+
+  // Add https:// when no protocol is provided
+  if (
+    url &&
+    !url.startsWith("http://") &&
+    !url.startsWith("https://")
+  ) {
+    url = "https://" + url;
+  }
+
+  if (
+      title.includes(":") ||
+      comment.includes(":") ||
+      keywords.some(keyword => keyword.includes(":"))
+    ) {
+    alert("Only the URL can contain a colon (:).");
+    return;
+  }
+
+  if (!title || !url || !comment || !theme) {
+    alert("Please fill in all required fields and select a theme.");
+    return;
+  }
+
+  // Prevent the "Other" control itself being saved as a keyword
+  const issueTitle = `[Resource:${theme}] ${title}`;
+
+  const issueBody =
+`type: resource
+title: ${title}
+url: ${url}
+comment: ${comment}
+theme: ${theme}
+${keywords.length > 0
+  ? `keywords:\n${keywords.map(keyword => `  - ${keyword}`).join("\n")}`
+  : ""}`;
+
+  const githubUrl =
+    "https://github.com/eleanor-broadway/CAKEbox/issues/new"
+    + "?labels=resource-submission"
+    + "&title=" + encodeURIComponent(issueTitle)
+    + "&body=" + encodeURIComponent(issueBody);
+
+  window.open(githubUrl, "_blank");
+}
+</script>
+
+
 
 
 <script>

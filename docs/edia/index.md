@@ -1,38 +1,87 @@
 ---
-title: Equality, Diversity, Inclusion & Accessibility (EDIA)
-tags: [Central themes, EDIA]
+title: Inclusion & Accessibility
+tags: [Key Themes]
 ---
-
 
 Equality, Diversity, Inclusion and Accessibility (EDIA) is fundamental to building a community where everyone feels welcomed, included and like they can contribute meaningfully. 
 
-**The [CAKE-CoSeC EDI Working Group](CAKE-CoSeC-EDI-WG/index.md) supports this work by developing practical guidance and identifying priority areas for action.**
+The [CAKE-CoSeC EDI Working Group](CAKE-CoSeC-EDI-WG/index.md) supports this work by developing practical guidance and identifying priority areas for action.
 
-This theme brings together guidance, examples of good practice, and community-led resources. For example:
+<!-- Enable filtering for keywords, theme is fixed -->
+<div class="resources-filter">
+  <label for="keyword-filter"><b>Filter by keyword:</b></label>
+  <select
+    id="keyword-filter"
+    class="tip-input"
+    onchange="filterResources()"
+    disabled
+  >
+    <option value="">All keywords</option>
+  </select>
+</div>
 
-- Inclusive event logistics
-- Accessible communication practices  
-- Inclusive recruitment and participation  
-- Checklists, toolkits and reflection resources  
-- Signposts to trusted external guidance  
 
 ## Resources
 
-<!-- material/tags {include: [EDIA]} -->
+<!-- Show sprinkles -->
+<div class="sticky-board">
+  {% for tip in tips() %}
+    {% if tip.theme == "inclusion" or "inclusion" in tip.keywords %}
+    <div class="sticky-note {{ tip.color }}"
+            data-theme="{{ tip.theme }}"
+            data-keywords="{{ tip.keywords | join(',') }}"
+        >
+        <div class="note-title">
+        {{ tip.emoji }} {{ tip.title }}
+        </div>
 
-- [Recruitment EDI Checklist](https://n8cir.org.uk/documents/140/2022_05_09_recrtuitment_checklist_K3EWMHP.pdf)  
-  A practical checklist providing tips and suggestions for inclusive recruitment.
-- [Inclusive Hackathons Checklist](https://github.com/MarionBWeinzierl/RS-EDI/blob/main/HackathonEDI.md)  
-  Guidance for embedding EDIA considerations into hackathon planning and delivery.
-- [EPSRC Guidance for Neuro-Inclusive Meetings and Events](https://www.ukri.org/publications/epsrc-guidance-for-neuro-inclusive-meetings-and-events/)  
-  UKRI guidance on designing meetings and events that are inclusive for neurodivergent participants.
-- [Ten simple rules for pushing boundaries of inclusion at academic events](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011797)
-- [PyCon 2025's support for inclusion, diversity and accessibility](https://2025.pyconuk.org/inclusion/)
-- [Move the Needle](https://alces-flight.com/move-the-needle/) - A collaborative project tracking the efforts of people trying to transform the field of supercomputing.
-- [Understanding Equity, Diversity and Inclusion Challenges Within the Research Software Community](https://link.springer.com/chapter/10.1007/978-3-030-77980-1_30)
-- [Equity, Diversity, Inclusivity and Accessibility in Research Software Engineering: Guidelines for Making a Difference](https://www.software.ac.uk/blog/equity-diversity-inclusivity-and-accessibility-research-software-engineering-guidelines-making)
+        <div class="note-text">
+        {{ tip.text }}
+        </div>
+    </div>
+{% endif %}
+{% endfor %}
+</div>
 
----
+
+<!-- Show resources -->
+<div class="resources-board">
+  {% for resource in resources() %}
+    {% if resource.theme == "inclusion" or "inclusion" in resource.keywords %}
+        <div
+        class="resource-box"
+        data-theme="{{ resource.theme }}"
+        data-keywords="{{ resource.keywords | join(',') }}"
+        >
+        <div class="resource-title">
+            {{ resource.title }}
+        </div>
+
+        <div class="resource-url">
+            <a href="{{ resource.url }}">{{ resource.url }}</a>
+        </div>
+
+        <div class="resource-text">
+            {{ resource.comment }}
+        </div>
+
+        <div class="theme-badge">
+            {{ resource.theme }}
+        </div>
+        
+        {% if resource.keywords %}
+            <div class="resource-keywords">
+                {% for keyword in resource.keywords %}
+                <span class="resource-keyword">{{ keyword }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+        </div>
+
+    {% endif %}
+  {% endfor %}
+</div>
 
 ## Community Groups and Resource Hubs
 
@@ -47,4 +96,65 @@ The following groups provide curations of valuable EDIA leadership and resources
 - [RainbowR -  connect, support and promote LGBTQ+ people in the R community](https://rainbowr.org/)
 - [Institute for Research Software News and Blogs Hub](https://www.software.ac.uk/news-and-blogs-hub)
 
-    - [Inclusive Event Planning from Start to Finish](https://www.software.ac.uk/news/new-guide-inclusive-event-planning-start-finish)
+
+## Interested in our other themes? 
+
+[Explore all resources here.](../all.md)
+
+!!! question "Have something to share?"
+    Check out our [Contributing Guide](/how-to-contribute/) for our quick and easy ways to add your own resources.  
+
+
+
+
+<!-- Optional keyword filter for resources and sticky notes -->
+<script>
+function updateKeywordFilter() {
+  const keywordFilter = document.getElementById("keyword-filter");
+  const previousKeyword = keywordFilter.value;
+  const keywords = new Set();
+
+  document.querySelectorAll(".resource-box, .sticky-note")
+    .forEach(item => {
+      (item.dataset.keywords || "").split(",").forEach(keyword => {
+        const cleaned = keyword.trim();
+        if (cleaned && cleaned !== "tools") {
+          keywords.add(cleaned);
+        }
+      });
+    });
+
+  keywordFilter.innerHTML = '<option value="">All keywords</option>';
+  keywordFilter.disabled = false;
+
+  [...keywords].sort().forEach(keyword => {
+    const option = document.createElement("option");
+    option.value = keyword;
+    option.textContent = keyword;
+    keywordFilter.appendChild(option);
+  });
+
+  if (keywords.has(previousKeyword)) {
+    keywordFilter.value = previousKeyword;
+  }
+}
+
+function filterResources() {
+  const selectedKeyword = document.getElementById("keyword-filter").value;
+
+  document.querySelectorAll(".resource-box, .sticky-note")
+    .forEach(item => {
+      const keywords = (item.dataset.keywords || "")
+        .split(",")
+        .map(k => k.trim());
+
+      item.style.display =
+        !selectedKeyword || keywords.includes(selectedKeyword) ? "" : "none";
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateKeywordFilter();
+  filterResources();
+});
+</script>

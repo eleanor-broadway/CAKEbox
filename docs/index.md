@@ -26,19 +26,20 @@ tags:
 !!! question "Don't know where to start?"
     We recommend **[Sprinkles of Knowledge](resources/community-tips.md)**, where you can find quick tips, advice, and experiences from our community 🧁
 
+
+
+
 --- 
 
 <!-- material/tags {include: [Working Groups]} -->
 
+---
 
 <!-- material/tags {include: [Fellowship resources]} -->
 
-Find out more about the fellows here... 
-
+---
 
 <!-- material/tags {include: [Placements & Visits]} -->
-
-Find out more about the placements here... 
 
 ---
 
