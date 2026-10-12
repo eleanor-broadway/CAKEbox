@@ -634,7 +634,7 @@
       
       
       
-        <a href="../.#tag:key-themes" class="md-tag">Key Themes</a>
+        <a href="../how-to-contribute/contribution-template/#tag:key-themes" class="md-tag">Key Themes</a>
       
     
   </nav>
@@ -693,6 +693,10 @@
 
       <option value="tips">
         tips
+      </option>
+
+      <option value="tools">
+        tools
       </option>
 
   </select>
@@ -908,7 +912,7 @@
     <div
       class="resource-box"
       data-theme="outreach-and-advocacy"
-      data-keywords="inclusion,outreach-and-advocacy,engagement-and-participation"
+      data-keywords="inclusion,engagement-and-participation,recruitment"
     >
       <div class="resource-title">
         N8 CIR EDI Recruitment Checklist
@@ -931,9 +935,9 @@
 
             <span class="resource-keyword">inclusion</span>
 
-            <span class="resource-keyword">outreach-and-advocacy</span>
-
             <span class="resource-keyword">engagement-and-participation</span>
+
+            <span class="resource-keyword">recruitment</span>
 
         </div>
 
@@ -1164,6 +1168,50 @@
 
 
 
+  <div class="sticky-note yellow"
+          data-theme="tools"
+        data-keywords="kubernetes"
+      >
+
+    <!-- <div class="theme-sticky-badge">
+        tools
+    </div> -->
+
+
+    <div class="note-title">
+      📱 Deployments: Managing Application Lifecycle
+    </div>
+
+    <div class="note-text">
+      A deployment is a Kubernetes object that manages a set of pods and ensures the desired number of replicas are running at all times.
+    </div>
+</div>
+
+
+
+
+  <div class="sticky-note blue"
+          data-theme="tools"
+        data-keywords=""
+      >
+
+    <!-- <div class="theme-sticky-badge">
+        tools
+    </div> -->
+
+
+    <div class="note-title">
+      🔍 Tracking time
+    </div>
+
+    <div class="note-text">
+      Toggl Track helps you see where your time goes. Simple summaries make it easier to spot when work starts taking over.
+    </div>
+</div>
+
+
+
+
 </div>
 
 <h2 id="contribute-to-the-community">Contribute to the community</h2>
@@ -1244,6 +1292,10 @@
       Tips
     </option>
 
+    <option value="tools">
+      Tools
+    </option>
+
 </select>
 
 
@@ -1303,9 +1355,27 @@
       <input
         type="checkbox"
         name="keywords"
+        value="kubernetes"
+      >
+      <span>kubernetes</span>
+    </label>
+
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
         value="outreach-and-advocacy"
       >
       <span>outreach-and-advocacy</span>
+    </label>
+
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="recruitment"
+      >
+      <span>recruitment</span>
     </label>
 
 
@@ -1547,6 +1617,10 @@ ${keywords.length > 0
       Tips
     </option>
 
+    <option value="tools">
+      Tools
+    </option>
+
   <!-- <option value="other">Other — suggest a new theme</option> -->
 </select>
 
@@ -1607,9 +1681,27 @@ ${keywords.length > 0
       <input
         type="checkbox"
         name="keywords"
+        value="kubernetes"
+      >
+      <span>kubernetes</span>
+    </label>
+
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
         value="outreach-and-advocacy"
       >
       <span>outreach-and-advocacy</span>
+    </label>
+
+    <label class="keyword-option">
+      <input
+        type="checkbox"
+        name="keywords"
+        value="recruitment"
+      >
+      <span>recruitment</span>
     </label>
 
 
