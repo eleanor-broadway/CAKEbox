@@ -64,7 +64,7 @@ jobs:
           url = get("url")
           comment = get("comment")
           theme = get("theme")
-          subthemes = get_list("subthemes")
+          keywords = get_list("keywords")
 
 
           folder = Path(f"data/{theme}")
@@ -81,8 +81,8 @@ jobs:
               "theme": theme
           }
 
-          if subthemes:
-              data["subthemes"] = subthemes
+          if keywords:
+              data["keywords"] = keywords
 
           file_path.write_text(
               yaml.dump(data, sort_keys=False, allow_unicode=True),
