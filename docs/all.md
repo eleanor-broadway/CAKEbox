@@ -32,7 +32,7 @@ Looking for something specific? Choose a theme and/or keyword to filter the reso
     {% endfor %}
   </select>
 
-  <label for="keyword-filter"><b>Optionally, also choose another keyword:</b></label>
+  <label for="keyword-filter"><b>Filter by keyword:</b></label>
   <select
     id="keyword-filter"
     class="tip-input"
@@ -42,6 +42,18 @@ Looking for something specific? Choose a theme and/or keyword to filter the reso
     <option value="">All keywords</option>
   </select>
 
+
+  <label for="exclude-keyword-filter">
+    <b>Exclude a keyword:</b>
+  </label>
+  <select
+    id="exclude-keyword-filter"
+    class="tip-input"
+    onchange="filterResources()"
+    disabled
+  >
+    <option value="">All keywords</option>
+  </select>
 </div>
 
 
@@ -779,15 +791,79 @@ function updateKeywordFilter() {
   }
 }
 
+
+
+
+function updateExcludeKeywordFilter() {
+  const selectedTheme =
+    document.getElementById("theme-filter").value;
+
+  const excludeFilter =
+    document.getElementById("exclude-keyword-filter");
+
+  const previousKeyword = excludeFilter.value;
+
+  // Reset the dropdown
+  excludeFilter.innerHTML =
+    '<option value="">All keywords</option>';
+
+  // Require a theme before selecting a keyword
+  excludeFilter.disabled = !selectedTheme;
+
+  if (!selectedTheme) {
+    return;
+  }
+
+  // Collect keywords belonging to the selected theme
+  const keywords = new Set();
+
+  document.querySelectorAll(
+    ".resource-box, .sticky-note"
+  ).forEach(item => {
+    if (item.dataset.theme !== selectedTheme) {
+      return;
+    }
+
+    const itemKeywords = item.dataset.keywords
+      ? item.dataset.keywords.split(",")
+      : [];
+
+    itemKeywords.forEach(keyword => {
+      const cleanedKeyword = keyword.trim();
+
+      if (cleanedKeyword) {
+        keywords.add(cleanedKeyword);
+      }
+    });
+  });
+
+  // Populate the dropdown alphabetically
+  [...keywords].sort().forEach(keyword => {
+    const option = document.createElement("option");
+    option.value = keyword;
+    option.textContent = keyword;
+    excludeFilter.appendChild(option);
+  });
+
+  // Preserve the selection if it's still available
+  if (keywords.has(previousKeyword)) {
+    excludeFilter.value = previousKeyword;
+  }
+}
+
 function filterResources() {
   const selectedTheme =
     document.getElementById("theme-filter").value;
 
   // Refresh available keywords when the theme changes
   updateKeywordFilter();
+  updateExcludeKeywordFilter();
 
   const selectedKeyword =
     document.getElementById("keyword-filter").value;
+
+  const excludedKeyword =
+    document.getElementById("exclude-keyword-filter").value;
 
   document.querySelectorAll(
     ".resource-box, .sticky-note"
@@ -798,6 +874,9 @@ function filterResources() {
       ? item.dataset.keywords.split(",").map(k => k.trim())
       : [];
 
+    const excludesKeyword =
+      !excludedKeyword || !keywords.includes(excludedKeyword);
+
     const matchesTheme =
       !selectedTheme || primaryTheme === selectedTheme;
 
@@ -805,7 +884,9 @@ function filterResources() {
       !selectedKeyword || keywords.includes(selectedKeyword);
 
     item.style.display =
-      matchesTheme && matchesKeyword ? "" : "none";
-  });
+      matchesTheme && matchesKeyword && excludesKeyword
+        ? ""
+        : "none";
+      });
 }
 </script>
