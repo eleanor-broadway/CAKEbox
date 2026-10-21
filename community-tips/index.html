@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contributing" class="md-skip">
+        <a href="#explore-by-theme" class="md-skip">
           Skip to content
         </a>
       
@@ -421,6 +421,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#explore-by-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explore by theme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contributing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -487,7 +498,7 @@
       
       
       
-        <a href="tools/#tag:sprinkles-of-knowledge" class="md-tag">Sprinkles of Knowledge</a>
+        <a href="events/#tag:sprinkles-of-knowledge" class="md-tag">Sprinkles of Knowledge</a>
       
     
   </nav>
@@ -515,10 +526,47 @@
 <p>Welcome to <strong>Sprinkles of Knowledge!</strong> This is where you can find quick tips, advice, and experiences from our community.</p>
 <p>The most helpful ideas are often simple: a practical tip, something that worked, a mistake to avoid, or a small insight from experience.</p>
 <p>Browse our sprinkles by the themes below or share your own. <em>Curated by the <a href="https://www.cake.ac.uk/about/who-are-we">CAKE team</a>.</em></p>
+<h2 id="explore-by-theme">Explore by theme</h2>
+<p>Looking for something specific? Choose a theme and/or keyword to filter the resources and community tips below.</p>
+<div class="resources-filter">
+
+  <label for="theme-filter"><b>Filter by theme:</b></label>
+
+  <select
+    id="theme-filter"
+    class="tip-input"
+    onchange="filterResources()"
+  >
+    <option value="">All themes</option>
+
+
+      <option value="collaboration">
+        collaboration
+      </option>
+
+      <option value="events">
+        events
+      </option>
+
+      <option value="inclusion">
+        inclusion
+      </option>
+
+      <option value="tools">
+        tools
+      </option>
+
+  </select>
+
+</div>
+
 <div class="sticky-board">
 
 
-<div class="sticky-note pink">
+<div class="sticky-note pink"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     💬 Agree on how you communicate
   </div>
@@ -530,7 +578,10 @@
 
 
 
-<div class="sticky-note green">
+<div class="sticky-note green"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     📝 Share early thoughts and work
   </div>
@@ -542,7 +593,10 @@
 
 
 
-<div class="sticky-note blue">
+<div class="sticky-note blue"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     🔥 Don't let the awkwardness marinate
   </div>
@@ -554,7 +608,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     🎨 Hybrid is a team sport
   </div>
@@ -566,7 +623,10 @@
 
 
 
-<div class="sticky-note pink">
+<div class="sticky-note pink"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     📱 Leave the tech behind
   </div>
@@ -578,7 +638,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     📚 Revisit the plan
   </div>
@@ -590,7 +653,10 @@
 
 
 
-<div class="sticky-note green">
+<div class="sticky-note green"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     ✨ Save the coffee chats
   </div>
@@ -602,7 +668,10 @@
 
 
 
-<div class="sticky-note blue">
+<div class="sticky-note blue"
+  data-theme="collaboration"
+  >
+
   <div class="note-title">
     🔍 Share goals!
   </div>
@@ -614,7 +683,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="events"
+  >
+
   <div class="note-title">
     📌 Emded accessibility
   </div>
@@ -626,7 +698,10 @@
 
 
 
-<div class="sticky-note green">
+<div class="sticky-note green"
+  data-theme="events"
+  >
+
   <div class="note-title">
     💬 After the event
   </div>
@@ -638,7 +713,10 @@
 
 
 
-<div class="sticky-note blue">
+<div class="sticky-note blue"
+  data-theme="events"
+  >
+
   <div class="note-title">
     🎯 Archive your talks
   </div>
@@ -650,7 +728,10 @@
 
 
 
-<div class="sticky-note pink">
+<div class="sticky-note pink"
+  data-theme="events"
+  >
+
   <div class="note-title">
     🌟 Coffee breaks are where ideas happen
   </div>
@@ -662,7 +743,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="events"
+  >
+
   <div class="note-title">
     🎨 Quiet spaces
   </div>
@@ -674,7 +758,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="events"
+  >
+
   <div class="note-title">
     📚 Using slide decks for semi structured group discussions
   </div>
@@ -686,7 +773,10 @@
 
 
 
-<div class="sticky-note blue">
+<div class="sticky-note blue"
+  data-theme="inclusion"
+  >
+
   <div class="note-title">
     ✨ Ask everyone for adjustments by default
   </div>
@@ -698,7 +788,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="inclusion"
+  >
+
   <div class="note-title">
     💬 Accessible participation options
   </div>
@@ -710,7 +803,10 @@
 
 
 
-<div class="sticky-note green">
+<div class="sticky-note green"
+  data-theme="inclusion"
+  >
+
   <div class="note-title">
     ✨ Hybrid is hard - but important!
   </div>
@@ -722,7 +818,10 @@
 
 
 
-<div class="sticky-note pink">
+<div class="sticky-note pink"
+  data-theme="inclusion"
+  >
+
   <div class="note-title">
     📚 Language matters
   </div>
@@ -734,7 +833,10 @@
 
 
 
-<div class="sticky-note blue">
+<div class="sticky-note blue"
+  data-theme="inclusion"
+  >
+
   <div class="note-title">
     📝 Personas and User Stories
   </div>
@@ -746,7 +848,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     📱 Containers: The Building Blocks
   </div>
@@ -758,7 +863,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     📱 Deployments: Managing Application Lifecycle
   </div>
@@ -770,7 +878,10 @@
 
 
 
-<div class="sticky-note green">
+<div class="sticky-note green"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     📚 Kubernetes vs Docker
   </div>
@@ -782,7 +893,10 @@
 
 
 
-<div class="sticky-note green">
+<div class="sticky-note green"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     💬 Lightweight first
   </div>
@@ -794,7 +908,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     📝 Notion for everything!
   </div>
@@ -806,7 +923,10 @@
 
 
 
-<div class="sticky-note yellow">
+<div class="sticky-note yellow"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     📱 Pods: The Smallest Deployable Unit in Kubernetes
   </div>
@@ -818,7 +938,10 @@
 
 
 
-<div class="sticky-note blue">
+<div class="sticky-note blue"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     🔍 Tracking time
   </div>
@@ -830,7 +953,10 @@
 
 
 
-<div class="sticky-note pink">
+<div class="sticky-note pink"
+  data-theme="tools"
+  >
+
   <div class="note-title">
     ✨ Why Kubernetes?
   </div>
@@ -843,66 +969,6 @@
 
 
 </div>
-
-<!-- <div class="tip-theme-grid">
-
-
-
-
-
-<a class="tip-theme-card" href="../community-tips/events/">
-<div class="tip-theme-icon">🎤</div>
-<div class="tip-theme-content">
-<h3>Events</h3>
-<p>Workshops, conferences and hybrid meetings.</p>
-</div>
-
-<div class="tip-theme-arrow">→</div>
-
-</a>
-
-
-
-<a class="tip-theme-card" href="../community-tips/collaboration/">
-<div class="tip-theme-icon">🤝</div>
-<div class="tip-theme-content">
-<h3>Collaboration</h3>
-<p>Working together across teams and disciplines.</p>
-</div>
-
-<div class="tip-theme-arrow">→</div>
-
-</a>
-
-
-
-<a class="tip-theme-card" href="../community-tips/inclusion/">
-<div class="tip-theme-icon">🌍</div>
-<div class="tip-theme-content">
-<h3>Inclusion</h3>
-<p>Accessibility and inclusive community practices.</p>
-</div>
-
-<div class="tip-theme-arrow">→</div>
-
-</a>
-
-
-
-<a class="tip-theme-card" href="../community-tips/tools/">
-<div class="tip-theme-icon">🧠</div>
-<div class="tip-theme-content">
-<h3>Tools & Workflows</h3>
-<p>The right tools for the right job.</p>
-</div>
-
-<div class="tip-theme-arrow">→</div>
-
-</a>
-
-
-
-</div> -->
 
 <h2 id="contributing">Contributing</h2>
 <p>Click on a theme and add your post-it. It doesn’t need to be polished or perfect, even a short tip or small insight could really help someone else.</p>
@@ -1063,6 +1129,25 @@ text: ${text}`;
   }, 1600);
 
 })();
+</script>
+
+<!-- Add functionality to filter the stickys via theme -->
+<script>
+
+
+function filterResources() {
+  const selectedTheme =
+    document.getElementById("theme-filter").value;
+
+  document.querySelectorAll(".sticky-note").forEach(item => {
+      const primaryTheme = item.dataset.theme;
+
+      const matchesTheme =
+        !selectedTheme || primaryTheme === selectedTheme;
+
+        item.style.display = matchesTheme ? "" : "none";
+    });
+}
 </script>
 
 
