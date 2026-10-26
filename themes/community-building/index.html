@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -533,7 +533,7 @@
 <p>Browse all resources under the theme of <strong>community building</strong> below, or filter via keyword: </p>
 <!-- Enable filtering for keywords, theme is fixed -->
 <div class="resources-filter">
-  <label for="keyword-filter"><b>Filter by keyword:</b></label>
+  <label for="keyword-filter"><b>Include a keyword:</b></label>
   <select
     id="keyword-filter"
     class="tip-input"
@@ -1009,22 +1009,40 @@
 </div>
 <!-- Optional keyword filter for resources and sticky notes -->
 <script>
+
+const selectedTheme = "community-building";
+
 function updateKeywordFilter() {
+  // const selectedTheme =
+  //   document.getElementById("theme-filter").value;
+
   const keywordFilter =
     document.getElementById("keyword-filter");
 
+  // Remember the current keyword, if possible
   const previousKeyword = keywordFilter.value;
 
   // Reset the dropdown
   keywordFilter.innerHTML =
     '<option value="">All keywords</option>';
 
-  // Collect keywords
+  // Require a theme before selecting a keyword
+  keywordFilter.disabled = !selectedTheme;
+
+  if (!selectedTheme) {
+    return;
+  }
+
+  // Collect keywords belonging to the selected theme
   const keywords = new Set();
 
   document.querySelectorAll(
     ".resource-box, .sticky-note"
   ).forEach(item => {
+    if (item.dataset.theme !== selectedTheme) {
+      return;
+    }
+
     const itemKeywords = item.dataset.keywords
       ? item.dataset.keywords.split(",")
       : [];
@@ -1054,20 +1072,35 @@ function updateKeywordFilter() {
 
 
 function updateExcludeKeywordFilter() {
+  // const selectedTheme =
+  //   document.getElementById("theme-filter").value;
+
   const excludeFilter =
     document.getElementById("exclude-keyword-filter");
 
   const previousKeyword = excludeFilter.value;
 
-excludeFilter.innerHTML =
+  // Reset the dropdown
+  excludeFilter.innerHTML =
     '<option value="">All keywords</option>';
 
-  // Collect keywords
+  // Require a theme before selecting a keyword
+  excludeFilter.disabled = !selectedTheme;
+
+  if (!selectedTheme) {
+    return;
+  }
+
+  // Collect keywords belonging to the selected theme
   const keywords = new Set();
 
   document.querySelectorAll(
     ".resource-box, .sticky-note"
   ).forEach(item => {
+    if (item.dataset.theme !== selectedTheme) {
+      return;
+    }
+
     const itemKeywords = item.dataset.keywords
       ? item.dataset.keywords.split(",")
       : [];
@@ -1096,6 +1129,10 @@ excludeFilter.innerHTML =
 }
 
 function filterResources() {
+  // const selectedTheme =
+  //   document.getElementById("theme-filter").value;
+
+  // Refresh available keywords when the theme changes
   updateKeywordFilter();
   updateExcludeKeywordFilter();
 
@@ -1108,6 +1145,7 @@ function filterResources() {
   document.querySelectorAll(
     ".resource-box, .sticky-note"
   ).forEach(item => {
+    const primaryTheme = item.dataset.theme;
 
     const keywords = item.dataset.keywords
       ? item.dataset.keywords.split(",").map(k => k.trim())
@@ -1116,11 +1154,14 @@ function filterResources() {
     const excludesKeyword =
       !excludedKeyword || !keywords.includes(excludedKeyword);
 
+    const matchesTheme =
+      !selectedTheme || primaryTheme === selectedTheme;
+
     const matchesKeyword =
       !selectedKeyword || keywords.includes(selectedKeyword);
 
     item.style.display =
-      matchesKeyword && excludesKeyword
+      matchesTheme && matchesKeyword && excludesKeyword
         ? ""
         : "none";
       });
@@ -1229,10 +1270,10 @@ if (typeof document$ !== "undefined") {
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.instant", "content.code.copy", "content.action.edit", "tags"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.instant", "content.code.copy", "content.action.edit", "tags"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
